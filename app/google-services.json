@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "272673716203",
+    "firebase_url": "https://sharify-da339.firebaseio.com",
+    "project_id": "sharify-da339",
+    "storage_bucket": "sharify-da339.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272673716203:android:485c498fb7893c89",
+        "android_client_info": {
+          "package_name": "softwareengineering.assignment.sharify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272673716203-6jbm2b05fi4m14qmpq5c0cm4ikgakk1o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "softwareengineering.assignment.sharify",
+            "certificate_hash": "fbf4961ffbbf4d4cae6c49b37471cf45e157a594"
+          }
+        },
+        {
+          "client_id": "272673716203-9lmjgnrsgga3m0dusph72438uk8da626.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlLNKcQN5WYigQZrKEBCH0sz5I3SSM2qk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272673716203-9lmjgnrsgga3m0dusph72438uk8da626.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
