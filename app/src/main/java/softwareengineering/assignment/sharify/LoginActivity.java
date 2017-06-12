@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
             progDialog.setMessage("Signing in");
             progDialog.show();
 
-            final String emailInput = email.getText().toString();
+            final String emailInput = email.getText().toString().trim();
             final String passwordInput = password.getText().toString();
 
             Runnable loginTask = new Runnable() {
@@ -144,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
 
         boolean isEmail = false;
 
-        String input = email.getText().toString();
+        String input = email.getText().toString().trim();
 
         if(input.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(input).matches())
         {
@@ -168,6 +168,10 @@ public class LoginActivity extends AppCompatActivity {
     {
         Toast.makeText(getApplicationContext(), "Signed in", Toast.LENGTH_LONG).show();
         login_btn.setEnabled(true);
+
+        //Should start a different activity after login
+        Intent intent = new Intent(LoginActivity.this, EditProfileActivity.class);
+        startActivity(intent);
         finish();
     }
 

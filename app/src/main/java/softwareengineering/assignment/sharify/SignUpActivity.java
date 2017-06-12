@@ -70,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
         {
             createAccount.setEnabled(false);
 
-            final String email = emailInput.getText().toString();
+            final String email = emailInput.getText().toString().trim();
             final String password = passwordInput.getText().toString();
 
             final ProgressDialog progDialog = new ProgressDialog(SignUpActivity.this,
@@ -108,7 +108,7 @@ public class SignUpActivity extends AppCompatActivity {
     {
         boolean isValid = true;
 
-        String email = emailInput.getText().toString();
+        String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString();
         String reEnterPassword = reEnterPasswordInput.getText().toString();
 
@@ -149,7 +149,7 @@ public class SignUpActivity extends AppCompatActivity {
         createAccount.setEnabled(true);
         //setResult(RESULT_OK, null);
 
-        String email = emailInput.getText().toString();
+        String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString();
 
 
@@ -172,6 +172,8 @@ public class SignUpActivity extends AppCompatActivity {
     public void onSignInSuccessful()
     {
         Toast.makeText(getApplicationContext(), "Signed in", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(SignUpActivity.this, EditProfileActivity.class);
+        startActivity(intent);
         finish();
     }
 

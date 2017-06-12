@@ -7,4 +7,11 @@
     <string name="login_button">Login</string>
     <string name="create_account">Create Account</string>
     <string name="login_here">Have an account already? Login here!</string>
+    <string name="supermarket">Supermarket</string>
+    <string name="NGO">Non-governmental organization</string>
+    <string name="Name_Org">Organization Name</string>
+    <string name="Address_Org">Address</string>
+    <string name="Contact_Org">Contact Number</string>
+    <string name="Save_Org_Details">Save Details</string>
+    <string name="Type_Org">Organization Type: </string>
 </resources>
