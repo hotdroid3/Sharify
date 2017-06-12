@@ -5,5 +5,5 @@ package softwareengineering.assignment.sharify;
  */
 
 public class CharityItemInfo {
-    
+
 }
