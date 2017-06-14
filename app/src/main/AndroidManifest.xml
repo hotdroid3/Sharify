@@ -23,6 +23,9 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".EditProfileActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".NGOViewPagerActivity"
             android:theme="@style/AppTheme.Dark"></activity>
     </application>
 

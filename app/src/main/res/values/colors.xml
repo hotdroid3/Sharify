@@ -10,4 +10,6 @@
     <color name="accent">#FFFFFF</color>
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
+    <color name="offwhite">#E6E6E6</color>
+    <color name="slightblack">#2E2E2E</color>
 </resources>

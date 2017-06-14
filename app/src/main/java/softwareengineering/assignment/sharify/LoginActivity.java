@@ -170,7 +170,8 @@ public class LoginActivity extends AppCompatActivity {
         login_btn.setEnabled(true);
 
         //Should start a different activity after login
-        Intent intent = new Intent(LoginActivity.this, EditProfileActivity.class);
+
+        Intent intent = new Intent(LoginActivity.this, NGOViewPagerActivity.class);
         startActivity(intent);
         finish();
     }
