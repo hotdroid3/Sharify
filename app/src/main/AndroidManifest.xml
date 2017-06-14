@@ -23,6 +23,10 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".EditProfileActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".SupermarketActivity"
+            android:label="@string/title_activity_supermarket"
             android:theme="@style/AppTheme.Dark"></activity>
     </application>
 
