@@ -24,7 +24,7 @@ public class NGOViewPagerActivity extends AppCompatActivity {
 
     public class NGOViewPagerAdapter extends FragmentPagerAdapter {
         final int PAGE_COUNT = 4;
-        private String tabTitles[] = new String[]{"Available Items", "Tab2", "Tab3", "Tab4"};
+        private String tabTitles[] = new String[]{"Available Items", "Tab2", "Tab3", "Profile"};
         private Context context;
 
         public NGOViewPagerAdapter(FragmentManager fm, Context context) {
@@ -39,7 +39,20 @@ public class NGOViewPagerActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return AvailableItems.newInstance();
+            switch (position)
+            {
+                case 0:
+                    return AvailableItems.newInstance();
+                case 1:
+                    return AvailableItems.newInstance();
+                case 2:
+                    return AvailableItems.newInstance();
+                case 3:
+                    return ViewProfile.newInstance();
+                default:
+                    return null;
+
+            }
         }
 
         @Override

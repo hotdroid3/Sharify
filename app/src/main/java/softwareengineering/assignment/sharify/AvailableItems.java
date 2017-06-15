@@ -1,9 +1,11 @@
 package softwareengineering.assignment.sharify;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,12 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,7 +46,10 @@ public class AvailableItems extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase = null;
     private DatabaseReference mDataRef = null;
-    private ArrayList<CharityItemInfo> charityItemInfoArrayList;
+    private ArrayList<CharityItemInfo> charityItemInfoArrayList = new ArrayList<CharityItemInfo>();
+    private RecyclerView availableItemsRecycler;
+    private itemRecyclerViewAdapter recyclerViewAdapter = null;
+    private ProgressBar mProgressBar;
 
     private static final int DISPLAY_NAME_LENGTH= 13;
     private static final int LENGTH_OF_NAME_SUBSTRING = 11;
@@ -73,25 +80,89 @@ public class AvailableItems extends Fragment {
 //
 //
 //        mDataRef.child(crazy.getItemUUID()).setValue(crazy);
-        charityItemInfoArrayList = new ArrayList<CharityItemInfo>();
-        ValueEventListener postListener = new ValueEventListener() {
+
+
+
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
+        ChildEventListener itemChildEventListener = new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot singleSnapshot : dataSnapshot.getChildren())
-                {
-                    CharityItemInfo item = singleSnapshot.getValue(CharityItemInfo.class);
-                    charityItemInfoArrayList.add(item);
-                }
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                addItem(dataSnapshot);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                updateItem(dataSnapshot);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                removeItem(dataSnapshot);
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                //Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                // ...
+                Toast.makeText(getActivity(), "Error loading items!", Toast.LENGTH_LONG).show();
             }
         };
-        mDataRef.addListenerForSingleValueEvent(postListener);
+        mDataRef.addChildEventListener(itemChildEventListener);
+    }
+
+
+    private void addItem(DataSnapshot dataSnapshot)
+    {
+
+        charityItemInfoArrayList.add(dataSnapshot.getValue(CharityItemInfo.class));
+
+        if(recyclerViewAdapter != null)
+        {
+            recyclerViewAdapter.notifyItemInserted(charityItemInfoArrayList.size()-1);
+            availableItemsRecycler.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.GONE);
+        }
+    }
+
+    private void updateItem(DataSnapshot dataSnapshot)
+    {
+        CharityItemInfo updatedItem = dataSnapshot.getValue(CharityItemInfo.class);
+        for(CharityItemInfo charityItemInfo: charityItemInfoArrayList)
+        {
+            if(updatedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
+            {
+                int index = charityItemInfoArrayList.indexOf(charityItemInfo);
+                charityItemInfoArrayList.set(index, updatedItem);
+                if(recyclerViewAdapter != null)
+                {
+                    recyclerViewAdapter.notifyItemChanged(index);
+                }
+            }
+        }
+    }
+
+    private void removeItem(DataSnapshot dataSnapshot)
+    {
+        CharityItemInfo deletedItem = dataSnapshot.getValue(CharityItemInfo.class);
+        for(CharityItemInfo charityItemInfo: charityItemInfoArrayList)
+        {
+            if(deletedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
+            {
+                int index = charityItemInfoArrayList.indexOf(charityItemInfo);
+                charityItemInfoArrayList.remove(index);
+                if(recyclerViewAdapter != null)
+                {
+                    recyclerViewAdapter.notifyItemRemoved(index);
+                    recyclerViewAdapter.notifyItemRangeChanged(index, charityItemInfoArrayList.size()-1-index);
+                }
+            }
+        }
     }
 
     @Override
@@ -99,12 +170,14 @@ public class AvailableItems extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_available_items, container, false);
-        RecyclerView availableItemsRecycler = (RecyclerView) view.findViewById(R.id.availableItemsRecyclerView);
+        availableItemsRecycler = (RecyclerView) view.findViewById(R.id.availableItemsRecyclerView);
         availableItemsRecycler.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         availableItemsRecycler.setLayoutManager(gridLayoutManager);
-        itemRecyclerViewAdapter recyclerViewAdapter = new itemRecyclerViewAdapter(getActivity(), charityItemInfoArrayList);
+        charityItemInfoArrayList.clear();
+        recyclerViewAdapter = new itemRecyclerViewAdapter(getActivity(),charityItemInfoArrayList);
         availableItemsRecycler.setAdapter(recyclerViewAdapter);
+        mProgressBar =(ProgressBar)view.findViewById(R.id.progressBar);
         return view;
     }
 

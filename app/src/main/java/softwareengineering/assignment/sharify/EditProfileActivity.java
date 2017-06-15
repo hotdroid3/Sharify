@@ -1,7 +1,9 @@
 package softwareengineering.assignment.sharify;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
@@ -14,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static softwareengineering.assignment.sharify.ViewProfile.USERINFO;
+
 public class EditProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "EditProfileActivity";
@@ -25,6 +29,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private FirebaseDatabase mDatabase = null;
     private DatabaseReference mDataRef = null;
     private FirebaseAuth mAuth = null;
+    private RadioButton mNGO;
+    private RadioButton mSuper;
 
     private String organizationType;
 
@@ -37,10 +43,13 @@ public class EditProfileActivity extends AppCompatActivity {
         mDataRef = mDatabase.getReference();
         mAuth = FirebaseAuth.getInstance();
 
+
         orgName = (EditText)findViewById(R.id.organization_name);
         orgAddress = (EditText)findViewById(R.id.organization_address);
         orgContact = (EditText) findViewById(R.id.organization_contact);
         saveDetails = (AppCompatButton)findViewById(R.id.saveDetails);
+        mNGO = (RadioButton)findViewById(R.id.NGO_input);
+        mSuper = (RadioButton)findViewById(R.id.supermarket_input);
 
         saveDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +59,35 @@ public class EditProfileActivity extends AppCompatActivity {
         });
 
 
+    }
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        Intent i = getIntent();
+        UserInfo userInfo = i.getParcelableExtra(USERINFO);
+        if(userInfo != null)
+        {
+            updateView(userInfo);
+        }
+
+    }
+
+    private void updateView(UserInfo userInfo)
+    {
+        orgName.setText(userInfo.getOrganizationName());
+        orgAddress.setText(userInfo.getOrganizationAddress());
+        orgContact.setText(userInfo.getOrganizationContact());
+        if(userInfo.getOrganizationType().equals("Non-governmental Organization"))
+        {
+            mNGO.setChecked(true);
+            this.organizationType = "Non-governmental Organization";
+        }
+        else
+        {
+            mSuper.setChecked(true);
+            this.organizationType = "Supermarket";
+        }
     }
 
     public void onRadioItemClick(View view)
@@ -136,7 +174,13 @@ public class EditProfileActivity extends AppCompatActivity {
         {
             orgContact.setError("Please fill in your contact");
             inputNull = true;
-        }else
+        }
+        else if(!isNumeric(contact))
+        {
+            orgContact.setError("Contact Number Format Example: 0122729823");
+            inputNull = true;
+        }
+        else
         {
             orgContact.setError(null);
         }
@@ -153,8 +197,10 @@ public class EditProfileActivity extends AppCompatActivity {
     {
         Toast.makeText(EditProfileActivity.this, "Successfully saved details!", Toast.LENGTH_LONG).show();
         saveDetails.setEnabled(true);
-        //Start new activity
-
+        Intent intent = new Intent(EditProfileActivity.this, NGOViewPagerActivity.class);
+        startActivity(intent);
+        finish();
+        //Need to implement which viewpager to choose;
 
     }
 
@@ -162,5 +208,24 @@ public class EditProfileActivity extends AppCompatActivity {
     {
         Toast.makeText(getApplicationContext(),"Did not save user data. Please try again.", Toast.LENGTH_LONG).show();
         saveDetails.setEnabled(true);
+    }
+
+    private boolean isNumeric(String s)
+    {
+         try
+         {
+            Integer.parseInt(s);
+         }
+         catch (NumberFormatException e)
+         {
+             return false;
+         }
+         catch (Exception e)
+         {
+             return false;
+         }
+
+         return true;
+
     }
 }
