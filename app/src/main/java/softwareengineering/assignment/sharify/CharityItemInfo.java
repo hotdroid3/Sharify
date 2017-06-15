@@ -2,9 +2,6 @@ package softwareengineering.assignment.sharify;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.Chronometer;
-
-import java.util.UUID;
 
 /**
  * Created by Chanan on 12/6/2017.
@@ -23,15 +20,15 @@ public class CharityItemInfo implements Parcelable{
     private String contactDetails;
     private boolean isAccepted;
     private boolean isCollected;
-    private String itemDonatorUid;
-    private String NGOUid;
+    private String itemDonatorName;
+    private String itemCollectorName;
 
     public CharityItemInfo()
     {
 
     }
 
-    public CharityItemInfo(String itemUUID, String imgUri, String itemName, String itemDescription, String itemManufacturedDate, String itemExpiryDate, int itemQuantity, String itemCollectionDescription, String contactDetails, boolean isAccepted, boolean isCollected, String itemDonatorUid, String NGOUid) {
+    public CharityItemInfo(String itemUUID, String imgUri, String itemName, String itemDescription, String itemManufacturedDate, String itemExpiryDate, int itemQuantity, String itemCollectionDescription, String contactDetails, boolean isAccepted, boolean isCollected, String itemDonatorName, String itemCollectorName) {
         setItemUUID(itemUUID);
         setImgUri(imgUri);
         setItemName(itemName);
@@ -43,8 +40,8 @@ public class CharityItemInfo implements Parcelable{
         setContactDetails(contactDetails);
         setAccepted(isAccepted);
         setCollected(isCollected);
-        setItemDonatorUid(itemDonatorUid);
-        setNGOUid(NGOUid);
+        setItemDonatorName(itemDonatorName);
+        setItemCollectorName(itemCollectorName);
     }
     private CharityItemInfo(Parcel parcelIn)
     {
@@ -59,8 +56,8 @@ public class CharityItemInfo implements Parcelable{
         setContactDetails(parcelIn.readString());
         setAccepted(Boolean.valueOf(parcelIn.readString()));
         setCollected(Boolean.valueOf(parcelIn.readString()));
-        setItemDonatorUid(parcelIn.readString());
-        setNGOUid(parcelIn.readString());
+        setItemDonatorName(parcelIn.readString());
+        setItemCollectorName(parcelIn.readString());
     }
     @Override
     public void writeToParcel(Parcel parcel, int flags)
@@ -76,8 +73,8 @@ public class CharityItemInfo implements Parcelable{
         parcel.writeString(getContactDetails());
         parcel.writeString(Boolean.toString(isAccepted()));
         parcel.writeString(Boolean.toString(isCollected()));
-        parcel.writeString(getItemDonatorUid());
-        parcel.writeString(getNGOUid());
+        parcel.writeString(getItemDonatorName());
+        parcel.writeString(getItemCollectorName());
     }
 
     public String getItemUUID() {
@@ -168,22 +165,21 @@ public class CharityItemInfo implements Parcelable{
         this.isCollected = collected;
     }
 
-    public String getItemDonatorUid() {
-        return this.itemDonatorUid;
+    public String getItemDonatorName() {
+        return this.itemDonatorName;
     }
 
-    public void setItemDonatorUid(String itemDonatorUid) {
-        this.itemDonatorUid = itemDonatorUid;
+    public void setItemDonatorName(String itemDonatorName) {
+        this.itemDonatorName = itemDonatorName;
     }
 
-    public String getNGOUid() {
-        return this.NGOUid;
+    public String getItemCollectorName() {
+        return this.itemCollectorName;
     }
 
-    public void setNGOUid(String NGOUid) {
-        this.NGOUid = NGOUid;
+    public void setItemCollectorName(String itemCollectorName) {
+        this.itemCollectorName = itemCollectorName;
     }
-
 
     @Override
     public int describeContents()

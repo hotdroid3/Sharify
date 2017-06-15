@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="softwareengineering.assignment.sharify.ViewItemDetailsActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingRight="24dp"
+        android:paddingLeft="24dp"
+        android:paddingBottom="56dp">
+
+
+        <ImageView
+            android:id="@+id/itemPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Item Name"
+            android:textSize="20dp"
+            android:textColor="#e3e3e3"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/viewItemName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Item Donated By"
+            android:textSize="20dp"
+            android:textColor="#e3e3e3"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/itemDonator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp" />
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Item Description"
+            android:textSize="20dp"
+            android:textColor="#e3e3e3"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/viewItemDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Item Manufactured Date"
+            android:textSize="20dp"
+            android:textColor="#e3e3e3"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/viewManufactured"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Item Expiry Date"
+            android:textSize="20dp"
+            android:textColor="#e3e3e3"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/viewExpiry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quantity"
+            android:textSize="20dp"
+            android:textColor="#e3e3e3"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/viewQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="How to collect:"
+            android:textSize="20dp"
+            android:textColor="#e3e3e3"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/viewCollectionMethod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contact Number"
+            android:textSize="20dp"
+            android:textColor="#e3e3e3"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/viewContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp" />
+
+
+        <Button
+            android:id="@+id/acceptButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Accept Offer"
+            android:padding="5dp"
+            android:layout_gravity="center_horizontal"
+            />
+
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>

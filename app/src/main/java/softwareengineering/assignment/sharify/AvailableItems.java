@@ -1,32 +1,25 @@
 package softwareengineering.assignment.sharify;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -50,9 +43,11 @@ public class AvailableItems extends Fragment {
     private RecyclerView availableItemsRecycler;
     private itemRecyclerViewAdapter recyclerViewAdapter = null;
     private ProgressBar mProgressBar;
-
+    private int adapterPosition;
     private static final int DISPLAY_NAME_LENGTH= 13;
     private static final int LENGTH_OF_NAME_SUBSTRING = 11;
+
+    public static final String CHARITY_ITEM_INFO = "CharityItemInfo";
 
     public AvailableItems() {
         // Required empty public constructor
@@ -72,14 +67,21 @@ public class AvailableItems extends Fragment {
         mDatabase = FirebaseDatabase.getInstance();
         mDataRef = mDatabase.getReference();
         mDataRef = mDataRef.child("Charity Items' Information");
-//        CharityItemInfo crazy = new CharityItemInfo();
-//        crazy.setItemDonatorUid(mAuth.getCurrentUser().getUid());
-//        crazy.setItemUUID(UUID.randomUUID().toString());
-//        crazy.setItemName("Cauliflowerrrrrrrrrrrrrrrr");
-//        crazy.setImgUri("https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Choi_Sum_stalks.JPG/1200px-Choi_Sum_stalks.JPG");
-//
-//
-//        mDataRef.child(crazy.getItemUUID()).setValue(crazy);
+        CharityItemInfo crazy = new CharityItemInfo();
+        crazy.setItemDonatorName("Tesco");
+        crazy.setItemDescription("Tons of cauliflower about to go bad");
+        crazy.setItemManufacturedDate("19/09/2017");
+        crazy.setItemExpiryDate("20/09/2017");
+        crazy.setItemCollectionDescription("Collect from main branch at Sunway Pyramid Tesco");
+        crazy.setContactDetails("0129290192");
+        crazy.setItemUUID(UUID.randomUUID().toString());
+        crazy.setAccepted(false);
+        crazy.setCollected(false);
+        crazy.setItemName("Cauliflowerrrrrrrrrrrrrrrr");
+        crazy.setImgUri("https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Choi_Sum_stalks.JPG/1200px-Choi_Sum_stalks.JPG");
+
+
+        mDataRef.child(crazy.getItemUUID()).setValue(crazy);
 
 
 
@@ -87,6 +89,7 @@ public class AvailableItems extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
+        charityItemInfoArrayList.clear();
         ChildEventListener itemChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -120,28 +123,35 @@ public class AvailableItems extends Fragment {
     private void addItem(DataSnapshot dataSnapshot)
     {
 
-        charityItemInfoArrayList.add(dataSnapshot.getValue(CharityItemInfo.class));
-
-        if(recyclerViewAdapter != null)
+        CharityItemInfo charityItemInfo = dataSnapshot.getValue(CharityItemInfo.class);
+        if(!(charityItemInfo.isAccepted()))
         {
-            recyclerViewAdapter.notifyItemInserted(charityItemInfoArrayList.size()-1);
-            availableItemsRecycler.setVisibility(View.VISIBLE);
-            mProgressBar.setVisibility(View.GONE);
+            charityItemInfoArrayList.add(charityItemInfo);
+            if(recyclerViewAdapter != null)
+            {
+                recyclerViewAdapter.notifyItemInserted(charityItemInfoArrayList.size()-1);
+                availableItemsRecycler.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.GONE);
+            }
         }
+
     }
 
     private void updateItem(DataSnapshot dataSnapshot)
     {
         CharityItemInfo updatedItem = dataSnapshot.getValue(CharityItemInfo.class);
-        for(CharityItemInfo charityItemInfo: charityItemInfoArrayList)
+        if(!(updatedItem.isAccepted()))
         {
-            if(updatedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
+            for(CharityItemInfo charityItemInfo: charityItemInfoArrayList)
             {
-                int index = charityItemInfoArrayList.indexOf(charityItemInfo);
-                charityItemInfoArrayList.set(index, updatedItem);
-                if(recyclerViewAdapter != null)
+                if(updatedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
                 {
-                    recyclerViewAdapter.notifyItemChanged(index);
+                    int index = charityItemInfoArrayList.indexOf(charityItemInfo);
+                    charityItemInfoArrayList.set(index, updatedItem);
+                    if(recyclerViewAdapter != null)
+                    {
+                        recyclerViewAdapter.notifyItemChanged(index);
+                    }
                 }
             }
         }
@@ -205,6 +215,8 @@ public class AvailableItems extends Fragment {
             }
             holder.itemNameView.setText(itemName);
             Picasso.with(getActivity()).load(itemsArrayList.get(position).getImgUri()).fit().centerCrop().into(holder.itemPhotoView);
+            //testing
+            adapterPosition = holder.getAdapterPosition();
         }
         @Override
         public int getItemCount() {
@@ -230,9 +242,11 @@ public class AvailableItems extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getActivity(),LoginActivity.class);
+                    Intent intent = new Intent(getActivity(),ViewItemDetailsActivity.class);
+                    CharityItemInfo charityItemInfo = charityItemInfoArrayList.get(adapterPosition);
+                    intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);
                     startActivity(intent);
-                    //supposed to start Entire Item View Fragment with parcelable;
+                    //testing
                 }
             });
         }

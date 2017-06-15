@@ -100,6 +100,10 @@ public class LoginActivity extends AppCompatActivity {
         {
             onFailedLogin();
         }
+        if(isPasswordNull())
+        {
+            onFailedLogin();
+        }
         else{
 
             login_btn.setEnabled(false);
@@ -140,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public boolean isEmailValid(){
+    private boolean isEmailValid(){
 
         boolean isEmail = false;
 
@@ -156,6 +160,23 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return isEmail;
+    }
+
+    private boolean isPasswordNull()
+    {
+        boolean isPasswordNull = true;
+
+        String pass = password.getText().toString().trim();
+
+        if(pass.isEmpty()) {
+            password.setError("Please enter your password!");
+        }
+        else
+        {
+            password.setError(null);
+            isPasswordNull = false;
+        }
+        return isPasswordNull;
     }
 
     public void onFailedLogin()

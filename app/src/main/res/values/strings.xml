@@ -15,7 +15,6 @@
     <string name="Save_Org_Details">Save Details</string>
     <string name="Type_Org">Organization Type:</string>
     <string name="Edit_Details">Edit Details</string>
+    <string name="Loading">Loading</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
