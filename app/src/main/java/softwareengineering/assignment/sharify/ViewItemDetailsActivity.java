@@ -49,7 +49,7 @@ public class ViewItemDetailsActivity extends AppCompatActivity {
         mDataRef = mDatabase.getReference();
         mDataRef = mDataRef.child("Charity Items' Information");
         mUserRef = mDatabase.getReference();
-        mUserRef = mUserRef.child("Users Information");
+
 
         itemImage = (ImageView)findViewById(R.id.itemPhoto);
         itemName = (TextView)findViewById(R.id.viewItemName);
@@ -64,7 +64,7 @@ public class ViewItemDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         charityItemInfo = intent.getParcelableExtra(CHARITY_ITEM_INFO);
-        String charityItemInfoUUID = charityItemInfo.getItemUUID();
+        final String charityItemInfoUUID = charityItemInfo.getItemUUID();
         mDataRef = mDataRef.child(charityItemInfoUUID);
         ValueEventListener itemInfoListener = new ValueEventListener() {
             @Override
@@ -80,7 +80,9 @@ public class ViewItemDetailsActivity extends AppCompatActivity {
         };
         mDataRef.addValueEventListener(itemInfoListener);
 
-        mUserRef.child(mAuth.getCurrentUser().getUid());
+
+        mUserRef = mUserRef.child("Users Information");
+        mUserRef = mUserRef.child(mAuth.getCurrentUser().getUid());
         ValueEventListener userListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -97,11 +99,10 @@ public class ViewItemDetailsActivity extends AppCompatActivity {
         itemAccepted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                charityItemInfo.setAccepted(true);
-                charityItemInfo.setItemCollectorName(userInfo.getOrganizationName());
-                DatabaseReference databaseReference = mDataRef;
-                databaseReference.child("accepted");
-                databaseReference.setValue(charityItemInfo.isAccepted());
+                updateCollected();
+                //Intent intent = new Intent(ViewItemDetailsActivity.this, NGOViewPagerActivity.class);
+                //startActivity(intent);
+                finish();
             }
         });
 
@@ -113,6 +114,23 @@ public class ViewItemDetailsActivity extends AppCompatActivity {
         super.onResume();
         updateView(charityItemInfo);
 
+    }
+
+    private void updateCollected()
+    {
+        Runnable updateTask = new Runnable() {
+            @Override
+            public void run() {
+                if(userInfo!= null){
+                    charityItemInfo.setAccepted(true);
+                    charityItemInfo.setItemCollectorName(userInfo.getOrganizationName());
+                    DatabaseReference databaseReference = mDatabase.getReference();
+                    databaseReference = databaseReference.child("Charity Items' Information").child(charityItemInfo.getItemUUID());
+                    databaseReference.setValue(charityItemInfo);
+                }
+            }
+        };
+        new Thread(updateTask).start();
     }
     private void updateView(CharityItemInfo charityItemInfo)
     {

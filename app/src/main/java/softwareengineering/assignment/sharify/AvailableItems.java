@@ -129,7 +129,9 @@ public class AvailableItems extends Fragment {
             charityItemInfoArrayList.add(charityItemInfo);
             if(recyclerViewAdapter != null)
             {
-                recyclerViewAdapter.notifyItemInserted(charityItemInfoArrayList.size()-1);
+                //testing
+                //recyclerViewAdapter.notifyItemInserted(charityItemInfoArrayList.size()-1);
+                recyclerViewAdapter.notifyDataSetChanged();
                 availableItemsRecycler.setVisibility(View.VISIBLE);
                 mProgressBar.setVisibility(View.GONE);
             }
@@ -139,6 +141,7 @@ public class AvailableItems extends Fragment {
 
     private void updateItem(DataSnapshot dataSnapshot)
     {
+        int index = -1;
         CharityItemInfo updatedItem = dataSnapshot.getValue(CharityItemInfo.class);
         if(!(updatedItem.isAccepted()))
         {
@@ -146,33 +149,43 @@ public class AvailableItems extends Fragment {
             {
                 if(updatedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
                 {
-                    int index = charityItemInfoArrayList.indexOf(charityItemInfo);
-                    charityItemInfoArrayList.set(index, updatedItem);
-                    if(recyclerViewAdapter != null)
-                    {
-                        recyclerViewAdapter.notifyItemChanged(index);
-                    }
+                    index = charityItemInfoArrayList.indexOf(charityItemInfo);
                 }
+            }
+            if(index != -1)
+            {
+                charityItemInfoArrayList.set(index, updatedItem);
+            }
+            if(recyclerViewAdapter != null)
+            {
+                //recyclerViewAdapter.notifyItemChanged(index);
+                recyclerViewAdapter.notifyDataSetChanged();
             }
         }
     }
 
     private void removeItem(DataSnapshot dataSnapshot)
     {
+        int index = -1;
         CharityItemInfo deletedItem = dataSnapshot.getValue(CharityItemInfo.class);
         for(CharityItemInfo charityItemInfo: charityItemInfoArrayList)
         {
             if(deletedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
             {
-                int index = charityItemInfoArrayList.indexOf(charityItemInfo);
-                charityItemInfoArrayList.remove(index);
-                if(recyclerViewAdapter != null)
-                {
-                    recyclerViewAdapter.notifyItemRemoved(index);
-                    recyclerViewAdapter.notifyItemRangeChanged(index, charityItemInfoArrayList.size()-1-index);
-                }
+                index = charityItemInfoArrayList.indexOf(charityItemInfo);
             }
         }
+        if(index != -1)
+        {
+            charityItemInfoArrayList.remove(index);
+            if(recyclerViewAdapter != null)
+            {
+//              recyclerViewAdapter.notifyItemRemoved(index);
+//              recyclerViewAdapter.notifyItemRangeChanged(index, charityItemInfoArrayList.size());
+                recyclerViewAdapter.notifyDataSetChanged();
+            }
+        }
+
     }
 
     @Override
@@ -241,12 +254,21 @@ public class AvailableItems extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    CharityItemInfo charityItemInfo;
                     Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getActivity(),ViewItemDetailsActivity.class);
-                    CharityItemInfo charityItemInfo = charityItemInfoArrayList.get(adapterPosition);
-                    intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);
-                    startActivity(intent);
-                    //testing
+                    try
+                    {
+                        charityItemInfo = charityItemInfoArrayList.get(adapterPosition);
+                        intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);
+                        startActivity(intent);
+
+                    }catch (IndexOutOfBoundsException e)
+                    {
+                        Toast.makeText(getActivity(),"Error, no more items available! ", Toast.LENGTH_LONG).show();
+                    }
+
+                    //getActivity().finish();
                 }
             });
         }
