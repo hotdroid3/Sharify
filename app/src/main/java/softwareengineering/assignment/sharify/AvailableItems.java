@@ -67,21 +67,21 @@ public class AvailableItems extends Fragment {
         mDatabase = FirebaseDatabase.getInstance();
         mDataRef = mDatabase.getReference();
         mDataRef = mDataRef.child("Charity Items' Information");
-        CharityItemInfo crazy = new CharityItemInfo();
-        crazy.setItemDonatorName("Tesco");
-        crazy.setItemDescription("Tons of cauliflower about to go bad");
-        crazy.setItemManufacturedDate("19/09/2017");
-        crazy.setItemExpiryDate("20/09/2017");
-        crazy.setItemCollectionDescription("Collect from main branch at Sunway Pyramid Tesco");
-        crazy.setContactDetails("0129290192");
-        crazy.setItemUUID(UUID.randomUUID().toString());
-        crazy.setAccepted(false);
-        crazy.setCollected(false);
-        crazy.setItemName("Cauliflowerrrrrrrrrrrrrrrr");
-        crazy.setImgUri("https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Choi_Sum_stalks.JPG/1200px-Choi_Sum_stalks.JPG");
+//        CharityItemInfo crazy = new CharityItemInfo();
+//        crazy.setItemDonatorName("Tesco");
+//        crazy.setItemDescription("Tons of cauliflower about to go bad");
+//        crazy.setItemManufacturedDate("19/09/2017");
+//        crazy.setItemExpiryDate("20/09/2017");
+//        crazy.setItemCollectionDescription("Collect from main branch at Sunway Pyramid Tesco");
+//        crazy.setContactDetails("0129290192");
+//        crazy.setItemUUID(UUID.randomUUID().toString());
+//        crazy.setAccepted(false);
+//        crazy.setCollected(false);
+//        crazy.setItemName("Cauliflowerrrrrrrrrrrrrrrr");
+//        crazy.setImgUri("https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Choi_Sum_stalks.JPG/1200px-Choi_Sum_stalks.JPG");
 
 
-        mDataRef.child(crazy.getItemUUID()).setValue(crazy);
+       // mDataRef.child(crazy.getItemUUID()).setValue(crazy);
 
 
 
