@@ -257,7 +257,7 @@ public class AvailableItemsFragment extends Fragment {
                 public void onClick(View view) {
                     CharityItemInfo charityItemInfo;
                     Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getActivity(),ViewItemDetailsActivity.class);
+                    Intent intent = new Intent(getActivity(),ViewAvailableItemDetailsActivity.class);
                     try
                     {
                         charityItemInfo = charityItemInfoArrayList.get(adapterPosition);

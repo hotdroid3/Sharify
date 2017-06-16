@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static softwareengineering.assignment.sharify.AvailableItemsFragment.CHARITY_ITEM_INFO;
 
@@ -278,7 +277,7 @@ public class NGOAcceptedItemsFragment extends Fragment {
                     CharityItemInfo charityItemInfo;
 //                  Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
 //
-                    Intent intent = new Intent(getActivity(), ViewItemDetailsActivity.class);
+                    Intent intent = new Intent(getActivity(), ViewAvailableItemDetailsActivity.class);
                     try {
                         charityItemInfo = acceptedItemsList.get(adapterPosition);
                         intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);

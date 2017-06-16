@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="softwareengineering.assignment.sharify.ViewAvailableItemDetailsActivity">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="softwareengineering.assignment.sharify.ViewAcceptedItemDetailsActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/itemPhoto"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="300dp"
             android:scaleType="centerCrop"
             android:layout_gravity="center"/>
@@ -38,14 +38,14 @@
             />
 
         <View
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="@color/grey" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Item_Donated_By"
+            android:text="Item Accepted From"
             android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
@@ -61,7 +61,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Item_Description"
+            android:text="Item Description"
             android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
@@ -78,7 +78,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Manufactured_Date"
+            android:text="Item Manufactured Date"
             android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
@@ -95,7 +95,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Expiry_Date"
+            android:text="Item Expiry Date"
             android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
@@ -111,7 +111,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Quantity"
+            android:text="Quantity"
             android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
@@ -128,7 +128,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/How_To_Collect"
+            android:text="How to collect"
             android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
@@ -144,7 +144,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Contact_Org"
+            android:text="Contact Number"
             android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
@@ -160,14 +160,19 @@
 
 
         <Button
-            android:id="@+id/acceptButton"
+            android:id="@+id/cancelButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Accept_Offer"
+            android:text="Cancel Order"
             android:textColor="@color/white"
             android:padding="5dp"
             android:layout_gravity="center_horizontal"
             />
+
+
+
+
+
 
     </LinearLayout>
 

@@ -7,126 +7,162 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="softwareengineering.assignment.sharify.ViewProfileFragment">
 
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="28dp"
-        android:paddingRight="24dp"
-        android:paddingLeft="24dp">
+        android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_darker"
+            android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:src="@drawable/logo"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal"/>
+            <ImageButton
+                android:id="@+id/editDetails"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:layout_gravity="top|right"
+                android:layout_marginBottom="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/setting"
+                android:background="@color/transparent"/>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24dp"
+                android:src="@drawable/logo_white" />
+
+            <TextView
+                android:id="@+id/viewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="24dp"
+                android:paddingLeft="24dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:textSize="30dp"
+                android:textAllCaps="true"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/iron"/>
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Name_Org"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="12dp"/>
-
-        <TextView
-            android:id="@+id/viewName"
-            android:textColor="@color/offwhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="2dp"
             android:text="@string/email_hint"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"/>
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/viewEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:textColor="@color/offwhite"
+            android:layout_marginBottom="5dp"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/blueGray"
+            android:textSize="20dp" />
 
-            />
+        <View
+            android:layout_width="320dp"
+            android:layout_height="1dp"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
+            android:layout_gravity="center"
+            android:background="@color/grey" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="2dp"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
             android:text="@string/Type_Org"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"/>
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/viewType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:textColor="@color/offwhite"
+            android:layout_marginBottom="5dp"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/blueGray"
+            android:textSize="20dp" />
 
-            />
+
+        <View
+            android:layout_width="320dp"
+            android:layout_height="1dp"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
+            android:layout_gravity="center"
+            android:background="@color/grey" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="2dp"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
             android:text="@string/Address_Org"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"/>
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/viewAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:textColor="@color/offwhite"
+            android:layout_marginBottom="5dp"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/blueGray"
+            android:textSize="20dp" />
 
-            />
+        <View
+            android:layout_width="320dp"
+            android:layout_height="1dp"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
+            android:layout_gravity="center"
+            android:background="@color/grey" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="2dp"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
             android:text="@string/Contact_Org"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"/>
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/viewContact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/offwhite"
-           />
-
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/editDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Edit_Details"
-            android:layout_marginBottom="20dp"
-            android:padding="12dp"
-           />
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/blueGray"
+            android:textSize="20dp" />
 
     </LinearLayout>
-
 </ScrollView>

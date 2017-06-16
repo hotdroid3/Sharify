@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.Dark">
+            android:theme="@style/AppTheme.Dark"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,16 +21,24 @@
         </activity>
         <activity
             android:name=".SignUpActivity"
-            android:theme="@style/AppTheme.Dark" />
+            android:theme="@style/AppTheme.Dark"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".EditProfileActivity"
-            android:theme="@style/AppTheme.Dark" />
+            android:theme="@style/AppTheme.Dark"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".NGOViewPagerActivity"
-            android:theme="@style/AppTheme.Dark" />
+            android:theme="@style/AppTheme.Dark"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".ViewItemDetailsActivity"
-            android:theme="@style/AppTheme.Dark"></activity>
+            android:name=".ViewAvailableItemDetailsActivity"
+            android:theme="@style/AppTheme.Dark"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ViewAcceptedItemDetailsActivity"
+            android:theme="@style/AppTheme.Dark"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

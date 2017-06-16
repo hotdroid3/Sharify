@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import static softwareengineering.assignment.sharify.AvailableItemsFragment.CHARITY_ITEM_INFO;
 
-public class ViewItemDetailsActivity extends AppCompatActivity {
+public class ViewAvailableItemDetailsActivity extends AppCompatActivity {
 
     private DatabaseReference mDataRef;
     private DatabaseReference mUserRef;
@@ -75,7 +75,7 @@ public class ViewItemDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(ViewItemDetailsActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
+                Toast.makeText(ViewAvailableItemDetailsActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
             }
         };
         mDataRef.addValueEventListener(itemInfoListener);
@@ -100,7 +100,7 @@ public class ViewItemDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateCollected();
-                //Intent intent = new Intent(ViewItemDetailsActivity.this, NGOViewPagerActivity.class);
+                //Intent intent = new Intent(ViewAvailableItemDetailsActivity.this, NGOViewPagerActivity.class);
                 //startActivity(intent);
                 finish();
             }
@@ -138,7 +138,7 @@ public class ViewItemDetailsActivity extends AppCompatActivity {
     {
         if (charityItemInfo != null)
         {
-            Picasso.with(ViewItemDetailsActivity.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
+            Picasso.with(ViewAvailableItemDetailsActivity.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
             itemName.setText(charityItemInfo.getItemName());
             itemDonator.setText(charityItemInfo.getItemDonatorName());
             itemDescription.setText(charityItemInfo.getItemDescription());

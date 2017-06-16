@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +29,7 @@ public class ViewProfileFragment extends Fragment {
     private TextView orgType;
     private TextView orgAddress;
     private TextView orgContact;
-    private Button editDetails;
+    private ImageButton  editDetails;
     private UserInfo userInfo;
 
 
@@ -103,7 +104,7 @@ public class ViewProfileFragment extends Fragment {
         orgType = (TextView)view.findViewById(R.id.viewType);
         orgAddress = (TextView)view.findViewById(R.id.viewAddress);
         orgContact = (TextView)view.findViewById(R.id.viewContact);
-        editDetails = (Button)view.findViewById(R.id.editDetails);
+        editDetails = (ImageButton)view.findViewById(R.id.editDetails);
 
 
 
