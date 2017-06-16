@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="softwareengineering.assignment.sharify.AvailableItems">
+    tools:context="softwareengineering.assignment.sharify.AvailableItemsFragment">
 
     <ProgressBar
         android:id="@+id/progressBar"

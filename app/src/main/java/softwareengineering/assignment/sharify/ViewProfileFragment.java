@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class ViewProfile extends Fragment {
+public class ViewProfileFragment extends Fragment {
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
@@ -34,14 +33,15 @@ public class ViewProfile extends Fragment {
 
 
     public static final String USERINFO = "USER_INFO";
+    public static final String CLASS_NAME = "CLASS_NAME";
 
-    public ViewProfile() {
+    public ViewProfileFragment() {
         // Required empty public constructor
     }
 
 
-    public static ViewProfile newInstance() {
-        ViewProfile fragment = new ViewProfile();
+    public static ViewProfileFragment newInstance() {
+        ViewProfileFragment fragment = new ViewProfileFragment();
         //implement parcelable?
         return fragment;
     }
@@ -114,6 +114,7 @@ public class ViewProfile extends Fragment {
             {
                 Intent intent = new Intent(getActivity(), EditProfileActivity.class);
                 intent.putExtra(USERINFO, userInfo);
+                intent.putExtra(CLASS_NAME, "NGOViewPagerActivity");
                 startActivity(intent);
                 //getActivity().finish();
                 //doesn't allow user to pressback in edit profile activity;

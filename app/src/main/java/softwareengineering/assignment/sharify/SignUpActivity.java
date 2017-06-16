@@ -173,7 +173,7 @@ public class SignUpActivity extends AppCompatActivity {
     {
         Toast.makeText(getApplicationContext(), "Signed in", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(SignUpActivity.this, EditProfileActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,0);
         finish();
     }
 

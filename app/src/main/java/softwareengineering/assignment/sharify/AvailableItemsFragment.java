@@ -24,17 +24,16 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 /**
  * A simple {@link Fragment} subclass.
 
- * Use the {@link AvailableItems#newInstance} factory method to
+ * Use the {@link AvailableItemsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 
-public class AvailableItems extends Fragment {
+public class AvailableItemsFragment extends Fragment {
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase = null;
@@ -49,13 +48,13 @@ public class AvailableItems extends Fragment {
 
     public static final String CHARITY_ITEM_INFO = "CharityItemInfo";
 
-    public AvailableItems() {
+    public AvailableItemsFragment() {
         // Required empty public constructor
     }
 
 
-    public static AvailableItems newInstance() {
-        AvailableItems fragment = new AvailableItems();
+    public static AvailableItemsFragment newInstance() {
+        AvailableItemsFragment fragment = new AvailableItemsFragment();
         //implement parcelable??
         return fragment;
     }
@@ -160,6 +159,8 @@ public class AvailableItems extends Fragment {
             {
                 //recyclerViewAdapter.notifyItemChanged(index);
                 recyclerViewAdapter.notifyDataSetChanged();
+                availableItemsRecycler.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.GONE);
             }
         }
     }

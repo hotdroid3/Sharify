@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 
-import static softwareengineering.assignment.sharify.AvailableItems.CHARITY_ITEM_INFO;
+import static softwareengineering.assignment.sharify.AvailableItemsFragment.CHARITY_ITEM_INFO;
 
 public class ViewItemDetailsActivity extends AppCompatActivity {
 

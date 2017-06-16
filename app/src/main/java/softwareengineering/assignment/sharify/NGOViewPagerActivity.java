@@ -42,13 +42,13 @@ public class NGOViewPagerActivity extends AppCompatActivity {
             switch (position)
             {
                 case 0:
-                    return AvailableItems.newInstance();
+                    return AvailableItemsFragment.newInstance();
                 case 1:
-                    return AvailableItems.newInstance();
+                    return AvailableItemsFragment.newInstance();
                 case 2:
-                    return AvailableItems.newInstance();
+                    return AvailableItemsFragment.newInstance();
                 case 3:
-                    return ViewProfile.newInstance();
+                    return ViewProfileFragment.newInstance();
                 default:
                     return null;
 

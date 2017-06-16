@@ -3,7 +3,6 @@ package softwareengineering.assignment.sharify;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
@@ -16,7 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import static softwareengineering.assignment.sharify.ViewProfile.USERINFO;
+import static softwareengineering.assignment.sharify.ViewProfileFragment.CLASS_NAME;
+import static softwareengineering.assignment.sharify.ViewProfileFragment.USERINFO;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -197,9 +197,19 @@ public class EditProfileActivity extends AppCompatActivity {
     {
         Toast.makeText(EditProfileActivity.this, "Successfully saved details!", Toast.LENGTH_LONG).show();
         saveDetails.setEnabled(true);
-        Intent intent = new Intent(EditProfileActivity.this, NGOViewPagerActivity.class);
-        startActivity(intent);
-        finish();
+        //check user account type before starting activity
+        Intent receivedIntent = getIntent();
+        String callingActivity = receivedIntent.getStringExtra(CLASS_NAME);
+        if(callingActivity.equals("NGOViewPagerActivity"))
+        {
+            finish();
+        }
+        else
+        {
+            Intent intent = new Intent(EditProfileActivity.this, NGOViewPagerActivity.class);
+            startActivity(intent);
+        }
+
         //Need to implement which viewpager to choose;
 
     }
