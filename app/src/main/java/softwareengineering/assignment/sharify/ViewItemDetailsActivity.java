@@ -124,9 +124,11 @@ public class ViewItemDetailsActivity extends AppCompatActivity {
                 if(userInfo!= null){
                     charityItemInfo.setAccepted(true);
                     charityItemInfo.setItemCollectorName(userInfo.getOrganizationName());
+                    charityItemInfo.setItemCollectorUid(mAuth.getCurrentUser().getUid().toString());
                     DatabaseReference databaseReference = mDatabase.getReference();
                     databaseReference = databaseReference.child("Charity Items' Information").child(charityItemInfo.getItemUUID());
                     databaseReference.setValue(charityItemInfo);
+
                 }
             }
         };

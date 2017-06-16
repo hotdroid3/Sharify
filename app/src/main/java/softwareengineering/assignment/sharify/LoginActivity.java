@@ -1,7 +1,10 @@
 package softwareengineering.assignment.sharify;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +22,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
@@ -28,11 +35,19 @@ public class LoginActivity extends AppCompatActivity {
     private TextView signup_btn = null;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private boolean isConnected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Runnable checkInternet = new Runnable() {
+            @Override
+            public void run() {
+                onCheckInternetConnection(LoginActivity.this);
+            }
+        };
+        new Thread(checkInternet).start();
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener()
@@ -95,14 +110,16 @@ public class LoginActivity extends AppCompatActivity {
     public void login()
     {
         Log.d(TAG, "Login!");
-
-        if(!isEmailValid())
+        if(isPasswordNull() || !isEmailValid() || !isConnected)
         {
-            onFailedLogin();
-        }
-        if(isPasswordNull())
-        {
-            onFailedLogin();
+            if(isPasswordNull() || !isEmailValid())
+            {
+                onFailedLogin();
+            }
+            if(!isConnected)
+            {
+                notifyNoConnection();
+            }
         }
         else{
 
@@ -184,6 +201,11 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Login failed. Please try again.", Toast.LENGTH_LONG).show();
         login_btn.setEnabled(true);
     }
+    public void notifyNoConnection()
+    {
+        Toast.makeText(getApplicationContext(),"No internet connection!", Toast.LENGTH_LONG).show();
+        login_btn.setEnabled(true);
+    }
 
     public void onSuccessfulLogin()
     {
@@ -197,5 +219,32 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
+    public void onCheckInternetConnection(Context context)
+    {
+        isConnected = false;
+        ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if((networkInfo != null) && networkInfo.isConnected())
+        {
+            isConnected = true;
+        }
+        if(isConnected)
+        {
+            try{
+                HttpURLConnection urlConnection = (HttpURLConnection)(new URL("http://clients3.google.com/generate_204").openConnection());
+                urlConnection.setRequestProperty("User-Agent", "Android");
+                urlConnection.setRequestProperty("Connection", "close");
+                urlConnection.setConnectTimeout(1500);
+                urlConnection.connect();
+                if(urlConnection.getResponseCode() == 204 && urlConnection.getContentLength() == 0)
+                {
+                    isConnected = true;
+                }
+            }catch (IOException e)
+            {
+                isConnected = false;
+            }
+        }
+    }
 
 }

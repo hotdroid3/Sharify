@@ -24,7 +24,7 @@ public class NGOViewPagerActivity extends AppCompatActivity {
 
     public class NGOViewPagerAdapter extends FragmentPagerAdapter {
         final int PAGE_COUNT = 4;
-        private String tabTitles[] = new String[]{"Available Items", "Tab2", "Tab3", "Profile"};
+        private String tabTitles[] = new String[]{"Available", "Accepted", "Collected", "Profile"};
         private Context context;
 
         public NGOViewPagerAdapter(FragmentManager fm, Context context) {
@@ -44,7 +44,7 @@ public class NGOViewPagerActivity extends AppCompatActivity {
                 case 0:
                     return AvailableItemsFragment.newInstance();
                 case 1:
-                    return AvailableItemsFragment.newInstance();
+                    return NGOAcceptedItemsFragment.newInstance();
                 case 2:
                     return AvailableItemsFragment.newInstance();
                 case 3:

@@ -16,5 +16,11 @@
     <string name="Type_Org">Organization Type:</string>
     <string name="Edit_Details">Edit Details</string>
     <string name="Loading">Loading</string>
+    <string name="Item_Name">Item Name</string>
+    <string name="How_To_Collect">How To Collect</string>
+    <string name="Item_Donated_By">Item Donated By</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

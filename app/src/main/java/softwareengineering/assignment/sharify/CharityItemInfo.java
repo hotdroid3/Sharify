@@ -22,13 +22,16 @@ public class CharityItemInfo implements Parcelable{
     private boolean isCollected;
     private String itemDonatorName;
     private String itemCollectorName;
+    private String itemCollectorUid;
+    private String itemDonatorUid;
+
 
     public CharityItemInfo()
     {
 
     }
 
-    public CharityItemInfo(String itemUUID, String imgUri, String itemName, String itemDescription, String itemManufacturedDate, String itemExpiryDate, int itemQuantity, String itemCollectionDescription, String contactDetails, boolean isAccepted, boolean isCollected, String itemDonatorName, String itemCollectorName) {
+    public CharityItemInfo(String itemUUID, String imgUri, String itemName, String itemDescription, String itemManufacturedDate, String itemExpiryDate, int itemQuantity, String itemCollectionDescription, String contactDetails, boolean isAccepted, boolean isCollected, String itemDonatorName, String itemCollectorName, String itemCollectorUid, String itemDonatorUid) {
         setItemUUID(itemUUID);
         setImgUri(imgUri);
         setItemName(itemName);
@@ -42,6 +45,8 @@ public class CharityItemInfo implements Parcelable{
         setCollected(isCollected);
         setItemDonatorName(itemDonatorName);
         setItemCollectorName(itemCollectorName);
+        setItemCollectorUid(itemCollectorUid);
+        setItemDonatorUid(itemDonatorUid);
     }
     private CharityItemInfo(Parcel parcelIn)
     {
@@ -58,6 +63,8 @@ public class CharityItemInfo implements Parcelable{
         setCollected(Boolean.valueOf(parcelIn.readString()));
         setItemDonatorName(parcelIn.readString());
         setItemCollectorName(parcelIn.readString());
+        setItemCollectorUid(parcelIn.readString());
+        setItemDonatorUid(parcelIn.readString());
     }
     @Override
     public void writeToParcel(Parcel parcel, int flags)
@@ -75,6 +82,8 @@ public class CharityItemInfo implements Parcelable{
         parcel.writeString(Boolean.toString(isCollected()));
         parcel.writeString(getItemDonatorName());
         parcel.writeString(getItemCollectorName());
+        parcel.writeString(getItemCollectorUid());
+        parcel.writeString(getItemDonatorUid());
     }
 
     public String getItemUUID() {
@@ -179,6 +188,22 @@ public class CharityItemInfo implements Parcelable{
 
     public void setItemCollectorName(String itemCollectorName) {
         this.itemCollectorName = itemCollectorName;
+    }
+
+    public String getItemCollectorUid() {
+        return this.itemCollectorUid;
+    }
+
+    public void setItemCollectorUid(String itemCollectorUid) {
+        this.itemCollectorUid = itemCollectorUid;
+    }
+
+    public String getItemDonatorUid() {
+        return this.itemDonatorUid;
+    }
+
+    public void setItemDonatorUid(String itemDonatorUid) {
+        this.itemDonatorUid = itemDonatorUid;
     }
 
     @Override
