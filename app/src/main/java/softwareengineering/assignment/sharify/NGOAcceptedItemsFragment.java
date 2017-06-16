@@ -275,9 +275,9 @@ public class NGOAcceptedItemsFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     CharityItemInfo charityItemInfo;
-//                  Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
 //
-                    Intent intent = new Intent(getActivity(), ViewAvailableItemDetailsActivity.class);
+                    Intent intent = new Intent(getActivity(), ViewAcceptedItemDetailsActivity.class);
                     try {
                         charityItemInfo = acceptedItemsList.get(adapterPosition);
                         intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);

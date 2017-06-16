@@ -29,7 +29,7 @@ public class ViewProfileFragment extends Fragment {
     private TextView orgType;
     private TextView orgAddress;
     private TextView orgContact;
-    private ImageButton  editDetails;
+    private ImageButton editDetails;
     private UserInfo userInfo;
 
 
@@ -118,7 +118,7 @@ public class ViewProfileFragment extends Fragment {
                 intent.putExtra(CLASS_NAME, "NGOViewPagerActivity");
                 startActivity(intent);
                 //getActivity().finish();
-                //doesn't allow user to pressback in edit profile activity;
+                //doesn't allow user to pressback in editprofile profile activity;
             }
         });
 

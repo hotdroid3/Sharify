@@ -28,7 +28,7 @@
                 android:layout_gravity="top|right"
                 android:layout_marginBottom="20dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/setting"
+                android:src="@drawable/editprofile"
                 android:background="@color/transparent"/>
 
             <ImageView

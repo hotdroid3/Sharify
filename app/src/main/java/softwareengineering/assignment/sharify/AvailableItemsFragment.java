@@ -24,6 +24,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -78,9 +79,9 @@ public class AvailableItemsFragment extends Fragment {
 //        crazy.setCollected(false);
 //        crazy.setItemName("Cauliflowerrrrrrrrrrrrrrrr");
 //        crazy.setImgUri("https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Choi_Sum_stalks.JPG/1200px-Choi_Sum_stalks.JPG");
-
-
-       // mDataRef.child(crazy.getItemUUID()).setValue(crazy);
+//
+//
+//        mDataRef.child(crazy.getItemUUID()).setValue(crazy);
 
 
 

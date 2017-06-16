@@ -65,6 +65,7 @@ public class ViewAvailableItemDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         charityItemInfo = intent.getParcelableExtra(CHARITY_ITEM_INFO);
         final String charityItemInfoUUID = charityItemInfo.getItemUUID();
+
         mDataRef = mDataRef.child(charityItemInfoUUID);
         ValueEventListener itemInfoListener = new ValueEventListener() {
             @Override
