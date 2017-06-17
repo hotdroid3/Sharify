@@ -16,15 +16,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.UserRecoverableException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import static softwareengineering.assignment.sharify.ViewProfileFragment.CLASS_NAME;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,6 +44,9 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private boolean isConnected = false;
+    private DatabaseReference mUserRef;
+    private FirebaseDatabase mDatabase;
+    private UserInfo userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +76,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         };
+
+        if(mAuth.getCurrentUser() != null)
+        {
+            startNewActivity();
+        }
+
+
         email = (EditText)findViewById(R.id.email);
         password =(EditText)findViewById(R.id.password);
         login_btn = (AppCompatButton)findViewById(R.id.login);
@@ -83,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),SignUpActivity.class);
+                intent.putExtra(CLASS_NAME,"LoginActivity");
                 startActivity(intent);
                 finish();
             }
@@ -213,10 +232,8 @@ public class LoginActivity extends AppCompatActivity {
         login_btn.setEnabled(true);
 
         //Should start a different activity after login
+        startNewActivity();
 
-        Intent intent = new Intent(LoginActivity.this, NGOViewPagerActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     public void onCheckInternetConnection(Context context)
@@ -245,6 +262,44 @@ public class LoginActivity extends AppCompatActivity {
                 isConnected = false;
             }
         }
+    }
+
+    public void startNewActivity()
+    {
+        mDatabase = FirebaseDatabase.getInstance();
+        mUserRef = mDatabase.getReference();
+        mUserRef = mUserRef.child("Users Information").child(mAuth.getCurrentUser().getUid());
+
+        ValueEventListener userListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userInfo = dataSnapshot.getValue(UserInfo.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mUserRef.addValueEventListener(userListener);
+
+        if(userInfo!= null)
+        {
+            String userType = userInfo.getOrganizationType();
+            if(userType.equals("Supermarket"))
+            {
+                Intent intent = new Intent(LoginActivity.this, SMViewPagerActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            else if(userType.equals("Non-governmental Organization")){
+                Intent intent = new Intent(LoginActivity.this, NGOViewPagerActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }
+
+
     }
 
 }

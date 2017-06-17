@@ -78,16 +78,25 @@ public class EditProfileActivity extends AppCompatActivity {
         orgName.setText(userInfo.getOrganizationName());
         orgAddress.setText(userInfo.getOrganizationAddress());
         orgContact.setText(userInfo.getOrganizationContact());
-        if(userInfo.getOrganizationType().equals("Non-governmental Organization"))
+        Intent intent = getIntent();
+        String callingActivity = intent.getStringExtra(CLASS_NAME);
+        if(callingActivity == null)
         {
-            mNGO.setChecked(true);
-            this.organizationType = "Non-governmental Organization";
+            if(userInfo.getOrganizationType().equals("Non-governmental Organization"))
+            {
+                mNGO.setChecked(true);
+                this.organizationType = "Non-governmental Organization";
+
+            }
+            else
+            {
+                mSuper.setChecked(true);
+                this.organizationType = "Supermarket";
+            }
+            mNGO.setEnabled(false);
+            mSuper.setEnabled(false);
         }
-        else
-        {
-            mSuper.setChecked(true);
-            this.organizationType = "Supermarket";
-        }
+
     }
 
     public void onRadioItemClick(View view)
@@ -200,14 +209,26 @@ public class EditProfileActivity extends AppCompatActivity {
         //check user account type before starting activity
         Intent receivedIntent = getIntent();
         String callingActivity = receivedIntent.getStringExtra(CLASS_NAME);
-        if(callingActivity.equals("NGOViewPagerActivity"))
+        if(callingActivity != null)
         {
-            finish();
+            if(callingActivity.equals("LoginActivity"))
+            {
+                if(this.organizationType.equals("Non-governmental Organization"))
+                {
+                    Intent intent = new Intent(EditProfileActivity.this, NGOViewPagerActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else if(this.organizationType.equals("Supermarket"))
+                {
+                    Intent intent = new Intent(EditProfileActivity.this, SMViewPagerActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
         }
-        else
-        {
-            Intent intent = new Intent(EditProfileActivity.this, NGOViewPagerActivity.class);
-            startActivity(intent);
+        else {
+            finish();
         }
 
         //Need to implement which viewpager to choose;

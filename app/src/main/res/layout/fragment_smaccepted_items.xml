@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="softwareengineering.assignment.sharify.NGOAvailableItemsFragment">
+    tools:context="softwareengineering.assignment.sharify.NGOCollectedItemsFragment">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -15,11 +15,8 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:id="@+id/availableItemsRecyclerView"
+        android:layout_marginTop="16dp"
+        android:id="@+id/collectedItemsRecyclerView"
         android:visibility="gone"
         />
-
 </RelativeLayout>

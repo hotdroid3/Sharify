@@ -1,5 +1,6 @@
 package softwareengineering.assignment.sharify;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -63,10 +64,16 @@ public class ViewProfileFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
+        final ProgressDialog progDialog = new ProgressDialog(getActivity(),
+                R.style.AppTheme_Dark_Dialog);
+        progDialog.setIndeterminate(true);
+        progDialog.setMessage("Loading");
+        progDialog.show();
         ValueEventListener userInfoListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 updateView(dataSnapshot);
+                progDialog.dismiss();
             }
 
             @Override
@@ -115,7 +122,7 @@ public class ViewProfileFragment extends Fragment {
             {
                 Intent intent = new Intent(getActivity(), EditProfileActivity.class);
                 intent.putExtra(USERINFO, userInfo);
-                intent.putExtra(CLASS_NAME, "NGOViewPagerActivity");
+                //intent.putExtra(CLASS_NAME, "NGOViewPagerActivity");
                 startActivity(intent);
                 //getActivity().finish();
                 //doesn't allow user to pressback in editprofile profile activity;

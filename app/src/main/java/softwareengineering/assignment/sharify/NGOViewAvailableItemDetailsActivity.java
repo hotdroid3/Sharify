@@ -18,9 +18,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 
-import static softwareengineering.assignment.sharify.AvailableItemsFragment.CHARITY_ITEM_INFO;
+import static softwareengineering.assignment.sharify.NGOAvailableItemsFragment.CHARITY_ITEM_INFO;
 
-public class ViewAvailableItemDetailsActivity extends AppCompatActivity {
+public class NGOViewAvailableItemDetailsActivity extends AppCompatActivity {
 
     private DatabaseReference mDataRef;
     private DatabaseReference mUserRef;
@@ -76,7 +76,7 @@ public class ViewAvailableItemDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(ViewAvailableItemDetailsActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
+                Toast.makeText(NGOViewAvailableItemDetailsActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
             }
         };
         mDataRef.addValueEventListener(itemInfoListener);
@@ -101,7 +101,7 @@ public class ViewAvailableItemDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateCollected();
-                //Intent intent = new Intent(ViewAvailableItemDetailsActivity.this, NGOViewPagerActivity.class);
+                //Intent intent = new Intent(NGOViewAvailableItemDetailsActivity.this, NGOViewPagerActivity.class);
                 //startActivity(intent);
                 finish();
             }
@@ -139,7 +139,7 @@ public class ViewAvailableItemDetailsActivity extends AppCompatActivity {
     {
         if (charityItemInfo != null)
         {
-            Picasso.with(ViewAvailableItemDetailsActivity.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
+            Picasso.with(NGOViewAvailableItemDetailsActivity.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
             itemName.setText(charityItemInfo.getItemName());
             itemDonator.setText(charityItemInfo.getItemDonatorName());
             itemDescription.setText(charityItemInfo.getItemDescription());

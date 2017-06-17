@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,9 +16,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import static softwareengineering.assignment.sharify.AvailableItemsFragment.CHARITY_ITEM_INFO;
+import static softwareengineering.assignment.sharify.NGOAvailableItemsFragment.CHARITY_ITEM_INFO;
 
-public class ViewAcceptedItemDetailsActivity extends AppCompatActivity {
+public class SMViewAcceptedItemDetailsActivity extends AppCompatActivity {
 
 
     private FirebaseDatabase mDatabase;
@@ -29,22 +28,19 @@ public class ViewAcceptedItemDetailsActivity extends AppCompatActivity {
 
     private ImageView itemImage;
     private TextView itemName;
-    private TextView itemDonator;
+    private TextView itemCollector;
     private TextView itemDescription;
     private TextView itemManufacturedDate;
     private TextView itemExpiryDate;
     private TextView itemQuantity;
     private TextView itemCollectionDescription;
     private TextView itemContactDetails;
-    private Button mCancelButton;
-
+    private Button mCollectedButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_accepted_item_details);
-
+        setContentView(R.layout.activity_smview_accepted_details);
 
         mDatabase = FirebaseDatabase.getInstance();
         mDataRef = mDatabase.getReference();
@@ -52,14 +48,14 @@ public class ViewAcceptedItemDetailsActivity extends AppCompatActivity {
 
         itemImage = (ImageView)findViewById(R.id.itemPhoto);
         itemName = (TextView)findViewById(R.id.viewItemName);
-        itemDonator = (TextView)findViewById(R.id.itemDonator);
+        itemCollector = (TextView)findViewById(R.id.itemCollector);
         itemDescription = (TextView)findViewById(R.id.viewItemDescription);
         itemManufacturedDate = (TextView)findViewById(R.id.viewManufactured);
         itemExpiryDate = (TextView)findViewById(R.id.viewExpiry);
         itemQuantity = (TextView)findViewById(R.id.viewQuantity);
         itemCollectionDescription = (TextView)findViewById(R.id.viewCollectionMethod);
         itemContactDetails = (TextView)findViewById(R.id.viewContact);
-        mCancelButton = (Button)findViewById(R.id.cancelButton);
+        mCollectedButton = (Button)findViewById(R.id.collectedButton);
 
         Intent intent = getIntent();
         charityItemInfo = intent.getParcelableExtra(CHARITY_ITEM_INFO);
@@ -75,23 +71,21 @@ public class ViewAcceptedItemDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(ViewAcceptedItemDetailsActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
+                Toast.makeText(SMViewAcceptedItemDetailsActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
             }
         };
         mDataRef.addValueEventListener(itemInfoListener);
 
-        mCancelButton.setOnClickListener(new View.OnClickListener() {
+        mCollectedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateAccepted();
-                //Intent intent = new Intent(ViewAvailableItemDetailsActivity.this, NGOViewPagerActivity.class);
+                updateCollected();
+                //Intent intent = new Intent(NGOViewAvailableItemDetailsActivity.this, NGOViewPagerActivity.class);
                 //startActivity(intent);
                 finish();
             }
         });
-
     }
-
     @Override
     protected void onResume()
     {
@@ -99,16 +93,15 @@ public class ViewAcceptedItemDetailsActivity extends AppCompatActivity {
         updateView(charityItemInfo);
 
     }
-    private void updateAccepted()
+
+    private void updateCollected()
     {
         Runnable updateTask = new Runnable() {
             @Override
             public void run() {
                 if(charityItemInfo!= null)
                 {
-                    charityItemInfo.setAccepted(false);
-                    charityItemInfo.setItemCollectorName(null);
-                    charityItemInfo.setItemCollectorUid(null);
+                    charityItemInfo.setCollected(true);
                     DatabaseReference databaseReference = mDatabase.getReference();
                     databaseReference = databaseReference.child("Charity Items' Information").child(charityItemInfo.getItemUUID());
                     databaseReference.setValue(charityItemInfo);
@@ -119,13 +112,14 @@ public class ViewAcceptedItemDetailsActivity extends AppCompatActivity {
         new Thread(updateTask).start();
     }
 
+
     private void updateView(CharityItemInfo charityItemInfo)
     {
         if (charityItemInfo != null)
         {
-            Picasso.with(ViewAcceptedItemDetailsActivity.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
+            Picasso.with(SMViewAcceptedItemDetailsActivity.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
             itemName.setText(charityItemInfo.getItemName());
-            itemDonator.setText(charityItemInfo.getItemDonatorName());
+            itemCollector.setText(charityItemInfo.getItemDonatorName());
             itemDescription.setText(charityItemInfo.getItemDescription());
             itemManufacturedDate.setText(charityItemInfo.getItemManufacturedDate());
             itemExpiryDate.setText(charityItemInfo.getItemExpiryDate());
@@ -134,5 +128,4 @@ public class ViewAcceptedItemDetailsActivity extends AppCompatActivity {
             itemContactDetails.setText(charityItemInfo.getContactDetails());
         }
     }
-
 }

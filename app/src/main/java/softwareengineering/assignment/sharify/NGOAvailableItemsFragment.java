@@ -24,17 +24,16 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 /**
  * A simple {@link Fragment} subclass.
 
- * Use the {@link AvailableItemsFragment#newInstance} factory method to
+ * Use the {@link NGOAvailableItemsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 
-public class AvailableItemsFragment extends Fragment {
+public class NGOAvailableItemsFragment extends Fragment {
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase = null;
@@ -49,13 +48,13 @@ public class AvailableItemsFragment extends Fragment {
 
     public static final String CHARITY_ITEM_INFO = "CharityItemInfo";
 
-    public AvailableItemsFragment() {
+    public NGOAvailableItemsFragment() {
         // Required empty public constructor
     }
 
 
-    public static AvailableItemsFragment newInstance() {
-        AvailableItemsFragment fragment = new AvailableItemsFragment();
+    public static NGOAvailableItemsFragment newInstance() {
+        NGOAvailableItemsFragment fragment = new NGOAvailableItemsFragment();
         //implement parcelable??
         return fragment;
     }
@@ -257,11 +256,12 @@ public class AvailableItemsFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     CharityItemInfo charityItemInfo;
-                    Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getActivity(),ViewAvailableItemDetailsActivity.class);
+
+                    Intent intent = new Intent(getActivity(),NGOViewAvailableItemDetailsActivity.class);
                     try
                     {
                         charityItemInfo = charityItemInfoArrayList.get(adapterPosition);
+                        Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
                         intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);
                         startActivity(intent);
 

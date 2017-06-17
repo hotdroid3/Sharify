@@ -42,7 +42,7 @@ public class NGOViewPagerActivity extends AppCompatActivity {
             switch (position)
             {
                 case 0:
-                    return AvailableItemsFragment.newInstance();
+                    return NGOAvailableItemsFragment.newInstance();
                 case 1:
                     return NGOAcceptedItemsFragment.newInstance();
                 case 2:

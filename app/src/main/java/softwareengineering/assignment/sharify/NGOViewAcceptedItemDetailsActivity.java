@@ -3,6 +3,7 @@ package softwareengineering.assignment.sharify;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,9 +16,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import static softwareengineering.assignment.sharify.AvailableItemsFragment.CHARITY_ITEM_INFO;
+import static softwareengineering.assignment.sharify.NGOAvailableItemsFragment.CHARITY_ITEM_INFO;
 
-public class ViewCollectedItemDetailsActivity extends AppCompatActivity {
+public class NGOViewAcceptedItemDetailsActivity extends AppCompatActivity {
+
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDataRef;
@@ -31,12 +33,17 @@ public class ViewCollectedItemDetailsActivity extends AppCompatActivity {
     private TextView itemManufacturedDate;
     private TextView itemExpiryDate;
     private TextView itemQuantity;
+    private TextView itemCollectionDescription;
     private TextView itemContactDetails;
+    private Button mCancelButton;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_collected_item_details);
+        setContentView(R.layout.activity_view_accepted_item_details);
+
 
         mDatabase = FirebaseDatabase.getInstance();
         mDataRef = mDatabase.getReference();
@@ -49,7 +56,9 @@ public class ViewCollectedItemDetailsActivity extends AppCompatActivity {
         itemManufacturedDate = (TextView)findViewById(R.id.viewManufactured);
         itemExpiryDate = (TextView)findViewById(R.id.viewExpiry);
         itemQuantity = (TextView)findViewById(R.id.viewQuantity);
+        itemCollectionDescription = (TextView)findViewById(R.id.viewCollectionMethod);
         itemContactDetails = (TextView)findViewById(R.id.viewContact);
+        mCancelButton = (Button)findViewById(R.id.cancelButton);
 
         Intent intent = getIntent();
         charityItemInfo = intent.getParcelableExtra(CHARITY_ITEM_INFO);
@@ -65,10 +74,20 @@ public class ViewCollectedItemDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(ViewCollectedItemDetailsActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
+                Toast.makeText(NGOViewAcceptedItemDetailsActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
             }
         };
         mDataRef.addValueEventListener(itemInfoListener);
+
+        mCancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateAccepted();
+                //Intent intent = new Intent(NGOViewAvailableItemDetailsActivity.this, NGOViewPagerActivity.class);
+                //startActivity(intent);
+                finish();
+            }
+        });
 
     }
 
@@ -79,19 +98,40 @@ public class ViewCollectedItemDetailsActivity extends AppCompatActivity {
         updateView(charityItemInfo);
 
     }
+    private void updateAccepted()
+    {
+        Runnable updateTask = new Runnable() {
+            @Override
+            public void run() {
+                if(charityItemInfo!= null)
+                {
+                    charityItemInfo.setAccepted(false);
+                    charityItemInfo.setItemCollectorName(null);
+                    charityItemInfo.setItemCollectorUid(null);
+                    DatabaseReference databaseReference = mDatabase.getReference();
+                    databaseReference = databaseReference.child("Charity Items' Information").child(charityItemInfo.getItemUUID());
+                    databaseReference.setValue(charityItemInfo);
+                }
+
+            }
+        };
+        new Thread(updateTask).start();
+    }
 
     private void updateView(CharityItemInfo charityItemInfo)
     {
         if (charityItemInfo != null)
         {
-            Picasso.with(ViewCollectedItemDetailsActivity.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
+            Picasso.with(NGOViewAcceptedItemDetailsActivity.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
             itemName.setText(charityItemInfo.getItemName());
             itemDonator.setText(charityItemInfo.getItemDonatorName());
             itemDescription.setText(charityItemInfo.getItemDescription());
             itemManufacturedDate.setText(charityItemInfo.getItemManufacturedDate());
             itemExpiryDate.setText(charityItemInfo.getItemExpiryDate());
             itemQuantity.setText(String.valueOf(charityItemInfo.getItemQuantity()));
+            itemCollectionDescription.setText(charityItemInfo.getItemCollectionDescription());
             itemContactDetails.setText(charityItemInfo.getContactDetails());
         }
     }
+
 }

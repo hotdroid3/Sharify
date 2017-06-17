@@ -43,11 +43,11 @@ public class SMViewPagerActivity extends AppCompatActivity {
             switch (position)
             {
                 case 0:
-                    return AvailableItemsFragment.newInstance();
+                    return NGOAvailableItemsFragment.newInstance();
                 case 1:
-                    return NGOAcceptedItemsFragment.newInstance();
+                    return SMAcceptedItemsFragment.newInstance();
                 case 2:
-                    return NGOCollectedItemsFragment.newInstance();
+                    return SMCollectedItemsFragment.newInstance();
                 case 3:
                     return ViewProfileFragment.newInstance();
                 default:
