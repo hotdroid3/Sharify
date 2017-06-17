@@ -9,25 +9,26 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class NGOViewPagerActivity extends AppCompatActivity {
+public class SMViewPagerActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ngoview_pager);
-        ViewPager viewPager = (ViewPager)findViewById(R.id.viewpager);
-        viewPager.setAdapter(new NGOViewPagerAdapter(getSupportFragmentManager(), NGOViewPagerActivity.this));
+        setContentView(R.layout.activity_smview_pager);
+        ViewPager viewPager = (ViewPager)findViewById(R.id.SMviewpager);
+        viewPager.setAdapter(new SMViewPagerActivity.SMViewPagerAdapter(getSupportFragmentManager(), SMViewPagerActivity.this));
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    public class NGOViewPagerAdapter extends FragmentPagerAdapter {
+    public class SMViewPagerAdapter extends FragmentPagerAdapter {
         final int PAGE_COUNT = 4;
-        private String tabTitles[] = new String[]{"Available", "Accepted", "Collected", "Profile"};
+        private String tabTitles[] = new String[]{"Uploaded", "Accepted", "Collected", "Profile"};
         private Context context;
 
-        public NGOViewPagerAdapter(FragmentManager fm, Context context) {
+        public SMViewPagerAdapter(FragmentManager fm, Context context) {
             super(fm);
             this.context = context;
         }

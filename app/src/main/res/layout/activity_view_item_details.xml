@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Item_Donated_By"
-            android:textSize="12dp"
+            android:textSize="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
 
@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Item_Description"
-            android:textSize="12dp"
+            android:textSize="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
 
@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Manufactured_Date"
-            android:textSize="12dp"
+            android:textSize="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
 
@@ -96,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Expiry_Date"
-            android:textSize="12dp"
+            android:textSize="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
 
@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Quantity"
-            android:textSize="12dp"
+            android:textSize="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
 
@@ -129,7 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/How_To_Collect"
-            android:textSize="12dp"
+            android:textSize="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
 
@@ -145,7 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Contact_Org"
-            android:textSize="12dp"
+            android:textSize="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
 

@@ -7,6 +7,7 @@
     <color name="primary">#f05545</color>
     <color name="primary_dark">#b71c1c</color>
     <color name="primary_darker">#7f0000</color>
+    <color name="primary_light">#ff8871</color>
 
     <color name="accent">#FFFFFF</color>
     <color name="iron">#CCCCCC</color>
@@ -32,6 +33,8 @@
     <color name="blueGray">#546e7a</color>
 
     <color name="transparent">#00000000</color>
+    <color name="splashscreenbackground">#7f0000</color>
+    <color name="black">#000000</color>
 
 
 

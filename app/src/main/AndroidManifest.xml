@@ -11,8 +11,36 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.Dark"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark"></activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".NGOViewPagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".ViewAvailableItemDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".ViewAcceptedItemDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".ViewCollectedItemDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,25 +48,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity"
-            android:theme="@style/AppTheme.Dark"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".EditProfileActivity"
-            android:theme="@style/AppTheme.Dark"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".NGOViewPagerActivity"
-            android:theme="@style/AppTheme.Dark"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".ViewAvailableItemDetailsActivity"
-            android:theme="@style/AppTheme.Dark"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".ViewAcceptedItemDetailsActivity"
-            android:theme="@style/AppTheme.Dark"
-            android:screenOrientation="portrait"></activity>
+            android:name=".SMViewPagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark">
+
+        </activity>
     </application>
 
 </manifest>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="softwareengineering.assignment.sharify.ViewAcceptedItemDetailsActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="softwareengineering.assignment.sharify.ViewCollectedItemDetailsActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -18,7 +18,7 @@ tools:context="softwareengineering.assignment.sharify.ViewAcceptedItemDetailsAct
 
         <ImageView
             android:id="@+id/itemPhoto"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="300dp"
             android:scaleType="centerCrop"
             android:layout_gravity="center"/>
@@ -38,14 +38,14 @@ tools:context="softwareengineering.assignment.sharify.ViewAcceptedItemDetailsAct
             />
 
         <View
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/grey" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Item_Accepted_From"
+            android:text="@string/Item_Collected_From"
             android:textSize="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
@@ -57,6 +57,7 @@ tools:context="softwareengineering.assignment.sharify.ViewAcceptedItemDetailsAct
             android:textStyle="bold"
             android:textColor="@color/blueGray"
             android:textSize="18dp" />
+
 
         <TextView
             android:layout_width="match_parent"
@@ -124,23 +125,6 @@ tools:context="softwareengineering.assignment.sharify.ViewAcceptedItemDetailsAct
             android:textColor="@color/blueGray"
             android:textSize="18dp" />
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/How_To_Collect"
-            android:textSize="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="4dp"/>
-
-        <TextView
-            android:id="@+id/viewCollectionMethod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/blueGray"
-            android:textSize="18dp" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -155,19 +139,10 @@ tools:context="softwareengineering.assignment.sharify.ViewAcceptedItemDetailsAct
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textColor="@color/blueGray"
-            android:textSize="18dp"
-            android:layout_marginBottom="15dp"/>
+            android:textSize="18dp" />
 
 
-        <Button
-            android:id="@+id/cancelButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Cancel_Order"
-            android:textColor="@color/white"
-            android:padding="5dp"
-            android:layout_gravity="center_horizontal"
-            />
+
 
     </LinearLayout>
 

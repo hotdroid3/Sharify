@@ -31,38 +31,36 @@ import static softwareengineering.assignment.sharify.AvailableItemsFragment.CHAR
 /**
  * A simple {@link Fragment} subclass.
 
- * Use the {@link NGOAcceptedItemsFragment#newInstance} factory method to
+ * Use the {@link NGOCollectedItemsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NGOAcceptedItemsFragment extends Fragment {
+public class NGOCollectedItemsFragment extends Fragment {
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDataRef;
     private DatabaseReference mUserRef;
-    private RecyclerView acceptedItemsRecyclerView;
-    private AcceptedItemsRecyclerViewAdapter adapter;
+    private RecyclerView collectedItemsRecyclerView;
+    private NGOCollectedItemsFragment.CollectedItemsRecyclerViewAdapter adapter;
     private int adapterPosition;
     private ProgressBar mProgressBar;
-    private ArrayList<CharityItemInfo> acceptedItemsList = new ArrayList<CharityItemInfo>();
+    private ArrayList<CharityItemInfo> collectedItemsList = new ArrayList<CharityItemInfo>();
     private UserInfo userInfo;
 
     private static final int DISPLAY_NAME_LENGTH = 25;
     private static final int LENGTH_OF_NAME_SUBSTRING = 22;
-
     private static final int DISPLAY_DONATOR_LENGTH = 52;
     private static final int LENGTH_OF_DONATOR_NAME_SUBSTRING = 48;
 
 
-
-    public NGOAcceptedItemsFragment() {
+    public NGOCollectedItemsFragment() {
         // Required empty public constructor
     }
 
 
-    public static NGOAcceptedItemsFragment newInstance() {
-        NGOAcceptedItemsFragment fragment = new NGOAcceptedItemsFragment();
-        //implement parcelable
+    public static NGOCollectedItemsFragment newInstance() {
+        NGOCollectedItemsFragment fragment = new NGOCollectedItemsFragment();
+        //implement parcelable?
         return fragment;
     }
 
@@ -92,15 +90,13 @@ public class NGOAcceptedItemsFragment extends Fragment {
             }
         };
         mUserRef.addValueEventListener(userListener);
-
     }
-
 
     @Override
     public void onStart(){
         super.onStart();
-        acceptedItemsList.clear();
-        ChildEventListener acceptedItemsListener = new ChildEventListener() {
+        collectedItemsList.clear();
+        ChildEventListener collectedItemsListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 addItem(dataSnapshot);
@@ -126,10 +122,8 @@ public class NGOAcceptedItemsFragment extends Fragment {
                 Toast.makeText(getActivity(), "Error loading items!", Toast.LENGTH_LONG).show();
             }
         };
-        mDataRef.addChildEventListener(acceptedItemsListener);
+        mDataRef.addChildEventListener(collectedItemsListener);
     }
-
-
     private void addItem(DataSnapshot dataSnapshot)
     {
 
@@ -139,20 +133,24 @@ public class NGOAcceptedItemsFragment extends Fragment {
         if(userInfo != null)
         {
             String userID = mAuth.getCurrentUser().getUid().toString();
-            if(isAccepted && !isCollected)
+            if(isAccepted && isCollected)
             {
-                if(charityItemInfo.getItemCollectorUid().equals(userID))
+                if(charityItemInfo.getItemCollectorUid() != null)
                 {
-                    acceptedItemsList.add(charityItemInfo);
-                    if(adapter != null)
+                    if(charityItemInfo.getItemCollectorUid().equals(userID))
                     {
-                        //testing
-                        //recyclerViewAdapter.notifyItemInserted(charityItemInfoArrayList.size()-1);
-                        adapter.notifyDataSetChanged();
-                        acceptedItemsRecyclerView.setVisibility(View.VISIBLE);
-                        mProgressBar.setVisibility(View.GONE);
+                        collectedItemsList.add(charityItemInfo);
+                        if(adapter != null)
+                        {
+                            //testing
+                            //recyclerViewAdapter.notifyItemInserted(charityItemInfoArrayList.size()-1);
+                            adapter.notifyDataSetChanged();
+                            collectedItemsRecyclerView.setVisibility(View.VISIBLE);
+                            mProgressBar.setVisibility(View.GONE);
+                        }
                     }
                 }
+
             }
         }
 
@@ -170,16 +168,16 @@ public class NGOAcceptedItemsFragment extends Fragment {
             String userID = mAuth.getCurrentUser().getUid().toString();
             if(updatedItem.getItemCollectorUid() == null)
             {
-                for(CharityItemInfo charityItemInfo: acceptedItemsList)
+                for(CharityItemInfo charityItemInfo: collectedItemsList)
                 {
                     if(updatedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
                     {
-                        index = acceptedItemsList.indexOf(charityItemInfo);
+                        index = collectedItemsList.indexOf(charityItemInfo);
                     }
                 }
                 if(index != -1)
                 {
-                    acceptedItemsList.remove(index);
+                    collectedItemsList.remove(index);
                     if(adapter != null)
                     {
 //              recyclerViewAdapter.notifyItemRemoved(index);
@@ -191,24 +189,24 @@ public class NGOAcceptedItemsFragment extends Fragment {
             else{
                 if(updatedItem.getItemCollectorUid().equals(userID))
                 {
-                    if(isAccepted && !isCollected)
+                    if(isAccepted && isCollected)
                     {
-                        for(CharityItemInfo charityItemInfo: acceptedItemsList)
+                        for(CharityItemInfo charityItemInfo: collectedItemsList)
                         {
                             if(updatedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
                             {
-                                index = acceptedItemsList.indexOf(charityItemInfo);
+                                index = collectedItemsList.indexOf(charityItemInfo);
                             }
                         }
                         if(index != -1)
                         {
-                            acceptedItemsList.set(index, updatedItem);
+                            collectedItemsList.set(index, updatedItem);
                         }
                         if(adapter != null)
                         {
                             //recyclerViewAdapter.notifyItemChanged(index);
                             adapter.notifyDataSetChanged();
-                            acceptedItemsRecyclerView.setVisibility(View.VISIBLE);
+                            collectedItemsRecyclerView.setVisibility(View.VISIBLE);
                             mProgressBar.setVisibility(View.GONE);
                         }
                     }
@@ -224,16 +222,16 @@ public class NGOAcceptedItemsFragment extends Fragment {
     {
         int index = -1;
         CharityItemInfo deletedItem = dataSnapshot.getValue(CharityItemInfo.class);
-        for(CharityItemInfo charityItemInfo: acceptedItemsList)
+        for(CharityItemInfo charityItemInfo: collectedItemsList)
         {
             if(deletedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
             {
-                index = acceptedItemsList.indexOf(charityItemInfo);
+                index = collectedItemsList.indexOf(charityItemInfo);
             }
         }
         if(index != -1)
         {
-            acceptedItemsList.remove(index);
+            collectedItemsList.remove(index);
             if(adapter != null)
             {
 //              recyclerViewAdapter.notifyItemRemoved(index);
@@ -244,42 +242,44 @@ public class NGOAcceptedItemsFragment extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_accepted_items, container, false);
-        acceptedItemsRecyclerView = (RecyclerView)view.findViewById(R.id.acceptedItemsRecyclerView);
-        acceptedItemsRecyclerView.setHasFixedSize(true);
+        View view = inflater.inflate(R.layout.fragment_ngocollected_items,container, false);
+        collectedItemsRecyclerView = (RecyclerView) view.findViewById(R.id.collectedItemsRecyclerView);
+        collectedItemsRecyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        acceptedItemsRecyclerView.setLayoutManager(linearLayoutManager);
-        acceptedItemsList.clear();
-        adapter = new AcceptedItemsRecyclerViewAdapter(getActivity(),acceptedItemsList);
-        acceptedItemsRecyclerView.setAdapter(adapter);
-        mProgressBar =(ProgressBar)view.findViewById(R.id.progressBar);
+        collectedItemsRecyclerView.setLayoutManager(linearLayoutManager);
+        collectedItemsList.clear();
+        adapter = new NGOCollectedItemsFragment.CollectedItemsRecyclerViewAdapter(getActivity(), collectedItemsList);
+        collectedItemsRecyclerView.setAdapter(adapter);
+        mProgressBar = (ProgressBar)view.findViewById(R.id.progressBar);
 
         return view;
     }
 
 
-    public class AcceptedItemsRecyclerViewAdapter extends RecyclerView.Adapter<NGOAcceptedItemsFragment.AcceptedItemViewHolder> {
+
+    public class CollectedItemsRecyclerViewAdapter extends RecyclerView.Adapter<NGOCollectedItemsFragment.CollectedItemViewHolder> {
+
         private ArrayList<CharityItemInfo> acceptedItems;
         protected Context context;
-        public AcceptedItemsRecyclerViewAdapter(Context context, ArrayList<CharityItemInfo> items) {
+
+        public CollectedItemsRecyclerViewAdapter(Context context, ArrayList<CharityItemInfo> items) {
             this.acceptedItems = items;
             this.context = context;
         }
         @Override
-        public NGOAcceptedItemsFragment.AcceptedItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            NGOAcceptedItemsFragment.AcceptedItemViewHolder viewHolder = null;
+        public NGOCollectedItemsFragment.CollectedItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            NGOCollectedItemsFragment.CollectedItemViewHolder viewHolder = null;
             View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_ngo_accepted_items, parent, false);
-            viewHolder = new NGOAcceptedItemsFragment.AcceptedItemViewHolder(layoutView, acceptedItems);
+            viewHolder = new NGOCollectedItemsFragment.CollectedItemViewHolder(layoutView, acceptedItems);
             return viewHolder;
         }
         @Override
-        public void onBindViewHolder(NGOAcceptedItemsFragment.AcceptedItemViewHolder holder, int position) {
-
-
+        public void onBindViewHolder(NGOCollectedItemsFragment.CollectedItemViewHolder holder, int position) {
             String itemName = acceptedItems.get(position).getItemName();
             String itemDonator = acceptedItems.get(position).getItemDonatorName();
             if(itemName.length() > DISPLAY_NAME_LENGTH)
@@ -307,19 +307,19 @@ public class NGOAcceptedItemsFragment extends Fragment {
     }
 
 
-    public class AcceptedItemViewHolder extends RecyclerView.ViewHolder
+    public class CollectedItemViewHolder extends RecyclerView.ViewHolder
     {
-        private static final String TAG = "AcceptedItemViewHolder";
+        private static final String TAG = "CollectedItemViewHolder";
 
         public ImageView itemPhotoView;
         public TextView itemNameView;
         public TextView itemDonatorView;
 
-        private ArrayList<CharityItemInfo> acceptedItems;
+        private ArrayList<CharityItemInfo> collectedItems;
 
-        public AcceptedItemViewHolder(final View itemView, final ArrayList<CharityItemInfo> items) {
+        public CollectedItemViewHolder(final View itemView, final ArrayList<CharityItemInfo> items) {
             super(itemView);
-            this.acceptedItems = items;
+            this.collectedItems = items;
             itemPhotoView = (ImageView) itemView.findViewById(R.id.itemPicture);
             itemNameView = (TextView) itemView.findViewById(R.id.acceptedItemName);
             itemDonatorView = (TextView) itemView.findViewById(R.id.itemDonatorName);
@@ -329,10 +329,10 @@ public class NGOAcceptedItemsFragment extends Fragment {
                 public void onClick(View view) {
                     CharityItemInfo charityItemInfo;
                     Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
-//
-                    Intent intent = new Intent(getActivity(), ViewAcceptedItemDetailsActivity.class);
+//start correct activity()
+                    Intent intent = new Intent(getActivity(), ViewCollectedItemDetailsActivity.class);
                     try {
-                        charityItemInfo = acceptedItemsList.get(adapterPosition);
+                        charityItemInfo = collectedItemsList.get(adapterPosition);
                         intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);
                         startActivity(intent);
 
@@ -345,4 +345,5 @@ public class NGOAcceptedItemsFragment extends Fragment {
             });
         }
     }
+
 }

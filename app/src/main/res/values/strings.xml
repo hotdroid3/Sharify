@@ -24,5 +24,7 @@
     <string name="Expiry_Date">Expiry Date</string>
     <string name="Quantity">Quantity</string>
     <string name="Accept_Offer">Accept Offer</string>
-
+    <string name="Item_Collected_From">Item Collected From</string>
+    <string name="Item_Accepted_From">Item Accepted From</string>
+    <string name="Cancel_Order">Cancel Order</string>
 </resources>
