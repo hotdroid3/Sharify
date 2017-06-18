@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Item_Donated_By"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="3dp"
             android:textColor="@color/weldonBlue"/>
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Item_Description"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="3dp"
             android:textColor="@color/weldonBlue"/>
@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Manufactured_Date"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="3dp"
             android:textColor="@color/weldonBlue"/>
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Expiry_Date"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="3dp"
             android:textColor="@color/weldonBlue"/>
@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Quantity"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="3dp"
             android:textColor="@color/weldonBlue"/>
@@ -130,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/How_To_Collect"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="3dp"
             android:textColor="@color/weldonBlue"/>
@@ -147,7 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Contact_Org"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="3dp"
             android:textColor="@color/weldonBlue"/>
@@ -170,6 +170,5 @@
             android:textColor="@color/offWhite_background"
             android:padding="5dp"
             android:layout_gravity="center_horizontal"/>
-
     </LinearLayout>
 </ScrollView>

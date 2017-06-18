@@ -204,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(input.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(input).matches())
         {
-            email.setError("Please enter a valid email address!");
+            email.setError("Please enter a valid email address.");
         }
         else {
             email.setError(null);
@@ -221,7 +221,7 @@ public class LoginActivity extends AppCompatActivity {
         String pass = password.getText().toString().trim();
 
         if(pass.isEmpty()) {
-            password.setError("Please enter your password!");
+            password.setError("Please enter your password.");
         }
         else
         {
@@ -238,13 +238,13 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void notifyNoConnection()
     {
-        Toast.makeText(LoginActivity.this,"No internet connection!", Toast.LENGTH_LONG).show();
+        Toast.makeText(LoginActivity.this,"No internet connection.", Toast.LENGTH_LONG).show();
         login_btn.setEnabled(true);
     }
 
     public void onSuccessfulLogin()
     {
-        Toast.makeText(LoginActivity.this, "Signed in", Toast.LENGTH_LONG).show();
+        Toast.makeText(LoginActivity.this, "Signed in.", Toast.LENGTH_LONG).show();
         login_btn.setEnabled(true);
 
         //Should start a different activity after login
@@ -287,7 +287,7 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressDialog progDialog = new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progDialog.setIndeterminate(true);
-        progDialog.setMessage("Loading User data...");
+        progDialog.setMessage("Loading user data...");
         progDialog.show();
         ValueEventListener userListener = new ValueEventListener() {
             @Override

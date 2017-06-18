@@ -173,7 +173,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         if(name.isEmpty())
         {
-            orgName.setError("Please fill in your organizational name");
+            orgName.setError("Please fill in your organizational name.");
             inputNull = true;
         }
         else{
@@ -181,7 +181,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
         if(address.isEmpty())
         {
-            orgAddress.setError("Please fill in your address");
+            orgAddress.setError("Please fill in your address.");
             inputNull = true;
         }
         else
@@ -190,12 +190,12 @@ public class EditProfileActivity extends AppCompatActivity {
         }
         if(contact.isEmpty())
         {
-            orgContact.setError("Please fill in your contact");
+            orgContact.setError("Please fill in your contact.");
             inputNull = true;
         }
         else if(!isNumeric(contact))
         {
-            orgContact.setError("Contact Number Format Example: 0122729823");
+            orgContact.setError("Contact number format example: 0122729823");
             inputNull = true;
         }
         else
@@ -204,7 +204,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
         if(this.organizationType == null)
         {
-            Toast.makeText(EditProfileActivity.this, "Please choose your type of organization!", Toast.LENGTH_LONG).show();
+            Toast.makeText(EditProfileActivity.this, "Please choose your type of organization.", Toast.LENGTH_LONG).show();
             inputNull = true;
         }
 
@@ -244,7 +244,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void onFailedSave()
     {
-        Toast.makeText(EditProfileActivity.this,"Did not save user data. Please try again.", Toast.LENGTH_LONG).show();
+        Toast.makeText(EditProfileActivity.this,"User data is not saved. Please try again.", Toast.LENGTH_LONG).show();
         saveDetails.setEnabled(true);
     }
 

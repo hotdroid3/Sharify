@@ -5,17 +5,13 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="red_primary">#7f0000</color>
-    <color name="red_secondary">#af4448</color>
 
     <color name="offWhite_background">#e7e7e7</color>
     <color name="blueGray_mainText">#506772</color>
     <color name="weldonBlue">#7E95A3</color>
     <color name="iron">#cccccc</color>
-
     <color name="grey">#80949494</color>
     <color name="white">#ffffff</color>
-
-    <color name="blond">#FAF0CA</color>
 
     <color name="transparent">#00000000</color>
 </resources>

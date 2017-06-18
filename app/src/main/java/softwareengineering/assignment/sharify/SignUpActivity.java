@@ -78,7 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
             final ProgressDialog progDialog = new ProgressDialog(SignUpActivity.this,
                     R.style.AppTheme_Dark_Dialog);
             progDialog.setIndeterminate(true);
-            progDialog.setMessage("Creating Account");
+            progDialog.setMessage("Creating account.");
             progDialog.show();
 
             Runnable signUpTask = new Runnable() {
@@ -116,7 +116,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         if(email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
-            emailInput.setError("Please enter a valid email address!");
+            emailInput.setError("Please enter a valid email address.");
             isValid = false;
         }
         else
@@ -130,7 +130,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
         else if (password.isEmpty())
         {
-            passwordInput.setError("Please enter a password");
+            passwordInput.setError("Please enter a password.");
             isValid = false;
         }
         else {
@@ -143,7 +143,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void onSignUpFail()
     {
-        Toast.makeText(SignUpActivity.this, "Unable to create account, please try again!", Toast.LENGTH_LONG).show();
+        Toast.makeText(SignUpActivity.this, "Unable to create account, please try again.", Toast.LENGTH_LONG).show();
         createAccount.setEnabled(true);
     }
     public void onSignUpSuccessful() {
@@ -173,7 +173,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void onSignInSuccessful()
     {
-        Toast.makeText(SignUpActivity.this, "Signed in", Toast.LENGTH_LONG).show();
+        Toast.makeText(SignUpActivity.this, "Signed in.", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(SignUpActivity.this, EditProfileActivity.class);
         intent.putExtra(CLASS_NAME, "SignUpActivity");
         startActivity(intent);
