@@ -20,6 +20,7 @@
             android:layout_gravity="center_horizontal" />
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/orgType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
@@ -81,7 +82,7 @@
             <EditText android:id="@+id/organization_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="number"
                 android:hint="@string/Contact_Org"/>
         </android.support.design.widget.TextInputLayout>
 
