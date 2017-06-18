@@ -64,7 +64,7 @@ public class NGOViewCollectedItemDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(NGOViewCollectedItemDetailsActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
+                Toast.makeText(NGOViewCollectedItemDetailsActivity.this, "Loading error." ,Toast.LENGTH_LONG).show();
             }
         };
         mDataRef.addValueEventListener(itemInfoListener);

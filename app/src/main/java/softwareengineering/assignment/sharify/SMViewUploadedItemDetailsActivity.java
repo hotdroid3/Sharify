@@ -79,7 +79,7 @@ public class SMViewUploadedItemDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(SMViewUploadedItemDetailsActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
+                Toast.makeText(SMViewUploadedItemDetailsActivity.this, "Loading error." ,Toast.LENGTH_LONG).show();
             }
         };
         mDataRef.addValueEventListener(itemInfoListener);

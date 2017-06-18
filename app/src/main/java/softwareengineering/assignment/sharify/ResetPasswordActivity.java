@@ -40,8 +40,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
                 if(email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches())
                 {
-                    inputEmail.setError("Please enter a valid email address!");
-                    Toast.makeText(getApplication(), "Enter your registered email!", Toast.LENGTH_SHORT).show();
+                    inputEmail.setError("Please enter a valid email address.");
+                    Toast.makeText(getApplication(), "Enter your registered email.", Toast.LENGTH_SHORT).show();
                     reset_btn.setEnabled(true);
                     return;
                 }
@@ -57,11 +57,11 @@ public class ResetPasswordActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(ResetPasswordActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ResetPasswordActivity.this, "We have sent you instructions to reset your password :)", Toast.LENGTH_SHORT).show();
                                     progDialog.dismiss();
                                     finish();
                                 } else {
-                                    Toast.makeText(ResetPasswordActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ResetPasswordActivity.this, "Failed to send reset email.", Toast.LENGTH_SHORT).show();
                                     progDialog.dismiss();
                                     reset_btn.setEnabled(true);
                                 }

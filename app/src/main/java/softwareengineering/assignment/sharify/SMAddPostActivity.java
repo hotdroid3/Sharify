@@ -110,7 +110,7 @@ public class SMAddPostActivity extends AppCompatActivity {
         final ProgressDialog progDialog = new ProgressDialog(SMAddPostActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progDialog.setIndeterminate(true);
-        progDialog.setMessage("Loading User data...");
+        progDialog.setMessage("Loading user data...");
         progDialog.show();
         ValueEventListener userListener = new ValueEventListener() {
             @Override
@@ -135,7 +135,7 @@ public class SMAddPostActivity extends AppCompatActivity {
             final ProgressDialog pDialog = new ProgressDialog(SMAddPostActivity.this,
                     R.style.AppTheme_Dark_Dialog);
             pDialog.setIndeterminate(true);
-            pDialog.setMessage("Loading Item data...");
+            pDialog.setMessage("Loading item data...");
             pDialog.show();
 
             final String charityItemInfoUUID = charityItem.getItemUUID();
@@ -153,7 +153,7 @@ public class SMAddPostActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(SMAddPostActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
+                    Toast.makeText(SMAddPostActivity.this, "Loading error." ,Toast.LENGTH_LONG).show();
                     pDialog.dismiss();
                 }
             };
@@ -257,7 +257,7 @@ public class SMAddPostActivity extends AppCompatActivity {
             }
             catch (Exception e)
             {
-                Toast.makeText(SMAddPostActivity.this, "Error loading image!",Toast.LENGTH_LONG).show();
+                Toast.makeText(SMAddPostActivity.this, "Error loading image.",Toast.LENGTH_LONG).show();
             }
 
             uploadPicture();
@@ -284,7 +284,7 @@ public class SMAddPostActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
                     // Handle unsuccessful uploads
-                    Toast.makeText(SMAddPostActivity.this, "Failed uploading image!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SMAddPostActivity.this, "Failed uploading image.", Toast.LENGTH_LONG).show();
                     isImgUploaded = false;
                     progDialog.dismiss();
                 }
@@ -357,7 +357,7 @@ public class SMAddPostActivity extends AppCompatActivity {
     }
 
     public void onSuccessfulSave() {
-        Toast.makeText(SMAddPostActivity.this, "Successfully uploaded item!", Toast.LENGTH_LONG).show();
+        Toast.makeText(SMAddPostActivity.this, "Successfully uploaded item.", Toast.LENGTH_LONG).show();
         upLoadItemButton.setEnabled(true);
         finish();
     }
@@ -369,7 +369,7 @@ public class SMAddPostActivity extends AppCompatActivity {
 
         if(name.isEmpty())
         {
-            itmName.setError("Please enter an item name!");
+            itmName.setError("Please enter an item name.");
             inputInvalid = true;
         }
         else{
@@ -377,7 +377,7 @@ public class SMAddPostActivity extends AppCompatActivity {
         }
         if(desc.isEmpty())
         {
-            itmDesc.setError("Please fill in a short description of the item!");
+            itmDesc.setError("Please fill in a short description of the item.");
             inputInvalid = true;
         }
         else
@@ -386,7 +386,7 @@ public class SMAddPostActivity extends AppCompatActivity {
         }
         if(eDate.isEmpty())
         {
-            itmExpiryDate.setError("Please select an expiry date!");
+            itmExpiryDate.setError("Please select an expiry date.");
             inputInvalid = true;
 
         }
@@ -396,13 +396,13 @@ public class SMAddPostActivity extends AppCompatActivity {
         }
         if(qty.isEmpty())
         {
-            itmQuantity.setError("Please enter quantity!");
+            itmQuantity.setError("Please enter quantity.");
             inputInvalid = true;
 
         }
         else if(!isNumeric(qty))
         {
-            itmQuantity.setError("Enter a number only!");
+            itmQuantity.setError("Enter a number only.");
             inputInvalid = true;
         }
         else
@@ -411,7 +411,7 @@ public class SMAddPostActivity extends AppCompatActivity {
         }
         if(coldesc.isEmpty())
         {
-            itmCollectionDescription.setError("Please explain how to collect the items!");
+            itmCollectionDescription.setError("Please explain how to collect the items.");
             inputInvalid = true;
         }
         else
@@ -463,7 +463,7 @@ public class SMAddPostActivity extends AppCompatActivity {
 
 
     public void onFailedSave() {
-        Toast.makeText(SMAddPostActivity.this, "Did not upload item, please try again.", Toast.LENGTH_LONG).show();
+        Toast.makeText(SMAddPostActivity.this, "Item is not uploaded.Please try again.", Toast.LENGTH_LONG).show();
         upLoadItemButton.setEnabled(true);
     }
 }

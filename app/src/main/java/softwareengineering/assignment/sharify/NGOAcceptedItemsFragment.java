@@ -123,7 +123,7 @@ public class NGOAcceptedItemsFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getActivity(), "Error loading items!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Error loading items.", Toast.LENGTH_LONG).show();
             }
         };
         mDataRef.addChildEventListener(acceptedItemsListener);
@@ -340,7 +340,7 @@ public class NGOAcceptedItemsFragment extends Fragment {
                         startActivity(intent);
 
                     } catch (IndexOutOfBoundsException e) {
-                        Toast.makeText(getActivity(), "Error, no more items available! ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Error, no more items available. ", Toast.LENGTH_LONG).show();
                     }
 
                     //getActivity().finish();

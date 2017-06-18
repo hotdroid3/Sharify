@@ -79,7 +79,7 @@ public class ViewProfileFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getActivity(),"Loading error!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"Loading error.", Toast.LENGTH_LONG).show();
             }
         };
         mDataRef.addValueEventListener(userInfoListener);
