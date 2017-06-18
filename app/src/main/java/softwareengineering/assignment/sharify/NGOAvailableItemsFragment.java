@@ -48,6 +48,12 @@ public class NGOAvailableItemsFragment extends Fragment {
 
     public static final String CHARITY_ITEM_INFO = "CharityItemInfo";
 
+
+//    public interface OnItemClickListener{
+//        void onItemClick(View view, int position);
+//    }
+
+
     public NGOAvailableItemsFragment() {
         // Required empty public constructor
     }
@@ -201,14 +207,23 @@ public class NGOAvailableItemsFragment extends Fragment {
         availableItemsRecycler.setLayoutManager(gridLayoutManager);
         charityItemInfoArrayList.clear();
         recyclerViewAdapter = new itemRecyclerViewAdapter(getActivity(),charityItemInfoArrayList);
+
         availableItemsRecycler.setAdapter(recyclerViewAdapter);
         mProgressBar =(ProgressBar)view.findViewById(R.id.progressBar);
         return view;
     }
 
     public class itemRecyclerViewAdapter extends RecyclerView.Adapter<ItemViewHolder> {
+
         private List<CharityItemInfo> itemsArrayList;
         protected Context context;
+
+//        private OnItemClickListener onItemClickListener;
+//
+//        public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+//            this.onItemClickListener = onItemClickListener;
+//        }
+
         public itemRecyclerViewAdapter(Context context, List<CharityItemInfo> items) {
             this.itemsArrayList = items;
             this.context = context;
@@ -261,6 +276,7 @@ public class NGOAvailableItemsFragment extends Fragment {
                     Intent intent = new Intent(getActivity(),NGOViewAvailableItemDetailsActivity.class);
                     try
                     {
+                        adapterPosition = getAdapterPosition();
                         charityItemInfo = charityItemInfoArrayList.get(adapterPosition);
                         Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
                         intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);
