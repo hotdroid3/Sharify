@@ -2,7 +2,6 @@ package softwareengineering.assignment.sharify;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,10 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import static softwareengineering.assignment.sharify.NGOAvailableItemsFragment.CHARITY_ITEM_INFO;
 
@@ -323,7 +319,7 @@ public class SMUploadedItemsFragment extends Fragment {
 
                     CharityItemInfo charityItemInfo;
 
-                    Intent intent = new Intent(getActivity(),SMViewUploadedItemDetails.class);
+                    Intent intent = new Intent(getActivity(),SMViewUploadedItemDetailsActivity.class);
                     try
                     {
                         charityItemInfo = uploadedItemsList.get(adapterPosition);

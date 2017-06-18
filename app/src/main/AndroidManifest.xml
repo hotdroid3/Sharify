@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="softwareengineering.assignment.sharify">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -60,9 +61,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".SMViewUploadedItemDetails"
+            android:name=".SMViewUploadedItemDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark"></activity>
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".SMAddPostActivity"
+            android:theme="@style/AppTheme.Dark"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

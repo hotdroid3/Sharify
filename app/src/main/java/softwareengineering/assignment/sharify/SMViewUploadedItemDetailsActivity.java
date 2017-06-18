@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import static softwareengineering.assignment.sharify.NGOAvailableItemsFragment.CHARITY_ITEM_INFO;
 
-public class SMViewUploadedItemDetails extends AppCompatActivity {
+public class SMViewUploadedItemDetailsActivity extends AppCompatActivity {
 
     private DatabaseReference mDataRef;
     private DatabaseReference mUserRef;
@@ -79,7 +79,7 @@ public class SMViewUploadedItemDetails extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(SMViewUploadedItemDetails.this, "Loading error!" ,Toast.LENGTH_LONG).show();
+                Toast.makeText(SMViewUploadedItemDetailsActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
             }
         };
         mDataRef.addValueEventListener(itemInfoListener);
@@ -88,6 +88,9 @@ public class SMViewUploadedItemDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //start addpost activity with parcelable do not finish()
+                Intent intent = new Intent(SMViewUploadedItemDetailsActivity.this, SMAddPostActivity.class);
+                intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);
+                startActivity(intent);
             }
         });
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +114,7 @@ public class SMViewUploadedItemDetails extends AppCompatActivity {
     {
         if (charityItemInfo != null)
         {
-            Picasso.with(SMViewUploadedItemDetails.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
+            Picasso.with(SMViewUploadedItemDetailsActivity.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
             itemName.setText(charityItemInfo.getItemName());
             itemDescription.setText(charityItemInfo.getItemDescription());
             itemManufacturedDate.setText(charityItemInfo.getItemManufacturedDate());
