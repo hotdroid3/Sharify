@@ -18,7 +18,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import static softwareengineering.assignment.sharify.NGOAvailableItemsFragment.CHARITY_ITEM_INFO;
-import static softwareengineering.assignment.sharify.ViewProfileFragment.CLASS_NAME;
 
 public class SMViewUploadedItemDetailsActivity extends AppCompatActivity {
 
@@ -45,7 +44,7 @@ public class SMViewUploadedItemDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_smview_uploaded_details);
+        setContentView(R.layout.activity_sm_view_uploaded_details);
 
 
         mAuth = FirebaseAuth.getInstance();

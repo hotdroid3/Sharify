@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="softwareengineering.assignment.sharify.SMViewCollectedItemDetailsActivity">
+    tools:context="softwareengineering.assignment.sharify.SMViewAcceptedItemDetailsActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -31,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/mediumPink"
+            android:textColor="@color/red_secondary"
             android:textSize="18dp"
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
@@ -46,25 +45,24 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Item_Collected_By"
-            android:textSize="15dp"
+            android:text="@string/Item_Accepted_From"
+            android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
 
         <TextView
-            android:id="@+id/itemCollectorName"
+            android:id="@+id/itemCollector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/blueGray"
+            android:textColor="@color/blueGray_mainText"
             android:textSize="18dp" />
-
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Item_Description"
-            android:textSize="15dp"
+            android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
 
@@ -73,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/blueGray"
+            android:textColor="@color/blueGray_mainText"
             android:textSize="18dp"
             />
 
@@ -81,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Manufactured_Date"
-            android:textSize="15dp"
+            android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
 
@@ -90,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/blueGray"
+            android:textColor="@color/blueGray_mainText"
             android:textSize="18dp" />
 
 
@@ -98,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Expiry_Date"
-            android:textSize="15dp"
+            android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="4dp"/>
 
@@ -107,29 +105,70 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/blueGray"
+            android:textColor="@color/blueGray_mainText"
             android:textSize="18dp" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Quantity"
-            android:textSize="15dp"
+            android:layout_marginBottom="4dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="4dp"/>
+            android:text="@string/Quantity"
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/viewQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/blueGray"
+            android:textColor="@color/blueGray_mainText"
             android:textSize="18dp" />
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/How_To_Collect"
+            android:textSize="12dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/viewCollectionMethod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/blueGray_mainText"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Contact_Org"
+            android:textSize="12dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/viewContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/blueGray_mainText"
+            android:textSize="18dp"
+            android:layout_marginBottom="15dp"/>
 
 
-
+        <Button
+            android:id="@+id/collectedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Collected"
+            android:textColor="@color/offWhite_background"
+            android:padding="5dp"
+            android:layout_gravity="center_horizontal"
+            />
 
     </LinearLayout>
 

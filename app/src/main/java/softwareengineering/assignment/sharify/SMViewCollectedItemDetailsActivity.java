@@ -37,7 +37,7 @@ public class SMViewCollectedItemDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_smview_collected_item_details);
+        setContentView(R.layout.activity_sm_view_collected_item_details);
 
         mDatabase = FirebaseDatabase.getInstance();
         mDataRef = mDatabase.getReference();

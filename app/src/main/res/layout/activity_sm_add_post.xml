@@ -101,7 +101,7 @@
             android:layout_marginTop="25dp"
             android:scaleType="centerCrop"
             android:text="@string/Upload_Image_Button"
-            android:textColor="@color/white"/>
+            android:textColor="@color/offWhite_background"/>
 
         <Button
             android:id="@+id/upload_button"
@@ -110,7 +110,7 @@
             android:layout_width = "match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Upload_Item"
-            android:textColor="@color/white"/>
+            android:textColor="@color/offWhite_background"/>
     </LinearLayout>
 
 </ScrollView>

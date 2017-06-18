@@ -40,7 +40,7 @@ public class SMViewAcceptedItemDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_smview_accepted_details);
+        setContentView(R.layout.activity_sm_view_accepted_details);
 
         mDatabase = FirebaseDatabase.getInstance();
         mDataRef = mDatabase.getReference();

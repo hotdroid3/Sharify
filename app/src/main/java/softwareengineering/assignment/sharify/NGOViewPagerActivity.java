@@ -14,7 +14,7 @@ public class NGOViewPagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ngoview_pager);
+        setContentView(R.layout.activity_ngo_view_pager);
         ViewPager viewPager = (ViewPager)findViewById(R.id.viewpager);
         viewPager.setAdapter(new NGOViewPagerAdapter(getSupportFragmentManager(), NGOViewPagerActivity.this));
 

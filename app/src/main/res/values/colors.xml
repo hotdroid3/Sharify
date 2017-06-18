@@ -4,38 +4,18 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="primary">#f05545</color>
-    <color name="primary_dark">#b71c1c</color>
-    <color name="primary_darker">#7f0000</color>
-    <color name="primary_light">#ff8871</color>
+    <color name="red_primary">#7f0000</color>
+    <color name="red_secondary">#af4448</color>
 
-    <color name="accent">#FFFFFF</color>
-    <color name="iron">#CCCCCC</color>
-    <color name="white">#e7e7e7</color>
-    <color name="offwhite">#80e3e3e3</color>
-    <color name="slightblack">#2E2E2E</color>
+    <color name="offWhite_background">#e7e7e7</color>
+    <color name="blueGray_mainText">#506772</color>
+    <color name="weldonBlue">#7E95A3</color>
+    <color name="iron">#cccccc</color>
+
     <color name="grey">#80949494</color>
+    <color name="white">#ffffff</color>
 
-    <color name="oxfordBlue">#0D2149</color>
-    <color name="robinEggBlue">#03CBC1</color>
-    <color name="maximumRed">#DE1A1A</color>
-    <color name="pinkOrange">#F39C6B</color>
     <color name="blond">#FAF0CA</color>
 
-    <color name="sunsetOrange">#FF5959</color>
-    <color name="veryParyYellow">#F3FFBD</color>
-    <color name="seaFoamGreen">#B2DBBF</color>
-    <color name="greenSheen">#70C1B3</color>
-    <color name="weldonBlue">#7E95A3</color>
-    <color name="lapisLazuli">#247BA0</color>
-
-    <color name="mediumPink">#af4448</color>
-    <color name="blueGray">#546e7a</color>
-
     <color name="transparent">#00000000</color>
-    <color name="splashscreenbackground">#7f0000</color>
-    <color name="black">#000000</color>
-
-
-
 </resources>

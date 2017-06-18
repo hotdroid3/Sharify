@@ -15,7 +15,6 @@
         android:paddingLeft="24dp"
         android:paddingBottom="24dp">
 
-
         <ImageView
             android:id="@+id/itemPhoto"
             android:layout_width="match_parent"
@@ -23,39 +22,37 @@
             android:scaleType="centerCrop"
             android:layout_gravity="center"/>
 
-
-
         <TextView
             android:id="@+id/viewItemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/mediumPink"
-            android:textSize="18dp"
+            android:textColor="@color/red_primary"
+            android:textSize="19dp"
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="12dp"
-            />
+            android:layout_marginBottom="12dp"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/grey" />
+            android:background="@color/grey"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Item_Collected_From"
-            android:textSize="15dp"
+            android:textSize="14dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/weldonBlue"/>
 
         <TextView
             android:id="@+id/itemDonator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/blueGray"
+            android:textColor="@color/blueGray_mainText"
             android:textSize="18dp" />
 
 
@@ -63,87 +60,87 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Item_Description"
-            android:textSize="15dp"
+            android:textSize="14dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/weldonBlue"/>
 
         <TextView
             android:id="@+id/viewItemDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/blueGray"
-            android:textSize="18dp"
-            />
+            android:textColor="@color/blueGray_mainText"
+            android:textSize="18dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Manufactured_Date"
-            android:textSize="15dp"
+            android:textSize="14dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/weldonBlue"/>
 
         <TextView
             android:id="@+id/viewManufactured"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/blueGray"
-            android:textSize="18dp" />
+            android:textColor="@color/blueGray_mainText"
+            android:textSize="18dp"/>
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Expiry_Date"
-            android:textSize="15dp"
+            android:textSize="14dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/weldonBlue"/>
 
         <TextView
             android:id="@+id/viewExpiry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/blueGray"
-            android:textSize="18dp" />
+            android:textColor="@color/blueGray_mainText"
+            android:textSize="18dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Quantity"
-            android:textSize="15dp"
+            android:textSize="14dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/weldonBlue"/>
 
         <TextView
             android:id="@+id/viewQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/blueGray"
-            android:textSize="18dp" />
+            android:textColor="@color/blueGray_mainText"
+            android:textSize="18dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Contact_Org"
-            android:textSize="15dp"
+            android:textSize="14dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/weldonBlue"/>
 
         <TextView
             android:id="@+id/viewContact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/blueGray"
-            android:textSize="18dp" />
-
-
-
+            android:textColor="@color/blueGray_mainText"
+            android:textSize="18dp"/>
 
     </LinearLayout>
-
 </ScrollView>

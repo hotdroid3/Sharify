@@ -232,7 +232,7 @@ public class SMUploadedItemsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_smuploaded_items,container,false);
+        View view = inflater.inflate(R.layout.fragment_sm_uploaded_items,container,false);
 
         uploadedItemsRecyclerView = (RecyclerView)view.findViewById(R.id.uploadedRecyclerView);
         uploadedItemsRecyclerView.setHasFixedSize(true);

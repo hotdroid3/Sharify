@@ -2,7 +2,6 @@ package softwareengineering.assignment.sharify;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 import static softwareengineering.assignment.sharify.NGOAvailableItemsFragment.CHARITY_ITEM_INFO;
 
@@ -271,7 +269,7 @@ public class SMAcceptedItemsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_smaccepted_items, container, false);
+        View view = inflater.inflate(R.layout.fragment_sm_accepted_items, container, false);
 
         SMAcceptedItemsRecyclerView = (RecyclerView)view.findViewById(R.id.collectedItemsRecyclerView);
         SMAcceptedItemsRecyclerView.setHasFixedSize(true);

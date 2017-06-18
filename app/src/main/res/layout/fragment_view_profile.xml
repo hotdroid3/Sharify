@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="softwareengineering.assignment.sharify.ViewProfileFragment">
-
 
     <LinearLayout
         android:orientation="vertical"
@@ -16,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary_darker"
+            android:background="@color/red_primary"
             android:orientation="vertical">
 
             <ImageButton
@@ -60,7 +58,8 @@
             android:layout_marginTop="25dp"
             android:layout_marginBottom="2dp"
             android:text="@string/email_hint"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:textColor="@color/weldonBlue"/>
 
         <TextView
             android:id="@+id/viewEmail"
@@ -71,8 +70,8 @@
             android:paddingLeft="24dp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-condensed"
-            android:textColor="@color/blueGray"
-            android:textSize="20dp" />
+            android:textColor="@color/blueGray_mainText"
+            android:textSize="20dp"/>
 
         <View
             android:layout_width="320dp"
@@ -80,7 +79,7 @@
             android:paddingRight="24dp"
             android:paddingLeft="24dp"
             android:layout_gravity="center"
-            android:background="@color/grey" />
+            android:background="@color/grey"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -90,7 +89,8 @@
             android:paddingRight="24dp"
             android:paddingLeft="24dp"
             android:text="@string/Type_Org"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:textColor="@color/weldonBlue"/>
 
         <TextView
             android:id="@+id/viewType"
@@ -101,8 +101,8 @@
             android:paddingLeft="24dp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-condensed"
-            android:textColor="@color/blueGray"
-            android:textSize="20dp" />
+            android:textColor="@color/blueGray_mainText"
+            android:textSize="20dp"/>
 
 
         <View
@@ -111,7 +111,7 @@
             android:paddingRight="24dp"
             android:paddingLeft="24dp"
             android:layout_gravity="center"
-            android:background="@color/grey" />
+            android:background="@color/grey"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -121,7 +121,8 @@
             android:paddingRight="24dp"
             android:paddingLeft="24dp"
             android:text="@string/Address_Org"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:textColor="@color/weldonBlue"/>
 
         <TextView
             android:id="@+id/viewAddress"
@@ -132,8 +133,8 @@
             android:paddingLeft="24dp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-condensed"
-            android:textColor="@color/blueGray"
-            android:textSize="20dp" />
+            android:textColor="@color/blueGray_mainText"
+            android:textSize="20dp"/>
 
         <View
             android:layout_width="320dp"
@@ -141,7 +142,7 @@
             android:paddingRight="24dp"
             android:paddingLeft="24dp"
             android:layout_gravity="center"
-            android:background="@color/grey" />
+            android:background="@color/grey"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -151,7 +152,8 @@
             android:paddingRight="24dp"
             android:paddingLeft="24dp"
             android:text="@string/Contact_Org"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:textColor="@color/weldonBlue"/>
 
         <TextView
             android:id="@+id/viewContact"
@@ -161,25 +163,29 @@
             android:paddingLeft="24dp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-condensed"
-            android:textColor="@color/blueGray"
-            android:textSize="20dp" />
+            android:textColor="@color/blueGray_mainText"
+            android:textSize="20dp"/>
+
+        <View
+            android:layout_width="320dp"
+            android:layout_height="1dp"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
+            android:layout_gravity="center"
+            android:background="@color/grey"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="right"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="24dp"
-            android:paddingRight="12dp"
-            android:paddingLeft="12dp"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp"
-            android:textColor="@color/white"
-            android:text="@string/Logout_Button"
-            android:background="@color/primary_darker"/>
-
+            android:padding="12dp"
+            android:textColor="@color/offWhite_background"
+            android:text="@string/logout_button"
+            android:background="@color/red_primary"/>
     </LinearLayout>
 </ScrollView>
