@@ -21,7 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="@string/Item_Name" />
+                android:hint="@string/Item_Name"
+                android:textColor="@color/blueGray_mainText"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -33,7 +34,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="@string/Item_Description"/>
+                android:hint="@string/Item_Description"
+                android:textColor="@color/blueGray_mainText"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -46,7 +48,8 @@
                 android:layout_height="wrap_content"
                 android:focusableInTouchMode="false"
                 android:inputType="none"
-                android:hint="@string/Manufactured_Date"/>
+                android:hint="@string/Manufactured_Date"
+                android:textColor="@color/blueGray_mainText"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -59,7 +62,8 @@
                 android:layout_height="wrap_content"
                 android:focusableInTouchMode="false"
                 android:inputType="none"
-                android:hint="@string/Expiry_Date"/>
+                android:hint="@string/Expiry_Date"
+                android:textColor="@color/blueGray_mainText"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -71,7 +75,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="@string/Quantity"/>
+                android:hint="@string/Quantity"
+                android:textColor="@color/blueGray_mainText"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -83,7 +88,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="@string/How_To_Collect"/>
+                android:hint="@string/How_To_Collect"
+                android:textColor="@color/blueGray_mainText"/>
         </android.support.design.widget.TextInputLayout>
 
         <ImageView
