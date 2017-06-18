@@ -248,7 +248,7 @@ public class NGOCollectedItemsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_ngocollected_items,container, false);
+        View view = inflater.inflate(R.layout.fragment_ngo_collected_items,container, false);
         collectedItemsRecyclerView = (RecyclerView) view.findViewById(R.id.collectedItemsRecyclerView);
         collectedItemsRecyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());

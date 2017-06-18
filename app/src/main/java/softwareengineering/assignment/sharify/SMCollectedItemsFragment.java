@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 import static softwareengineering.assignment.sharify.NGOAvailableItemsFragment.CHARITY_ITEM_INFO;
 
@@ -251,7 +250,7 @@ public class SMCollectedItemsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_smcollected_items,container, false);
+        View view = inflater.inflate(R.layout.fragment_sm_collected_items,container, false);
         SMcollectedItemsRecyclerView = (RecyclerView) view.findViewById(R.id.collectedItemsRecyclerView);
         SMcollectedItemsRecyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());

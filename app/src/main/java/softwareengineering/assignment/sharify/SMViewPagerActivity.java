@@ -18,7 +18,7 @@ public class SMViewPagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_smview_pager);
+        setContentView(R.layout.activity_sm_view_pager);
         ViewPager viewPager = (ViewPager)findViewById(R.id.SMviewpager);
         viewPager.setAdapter(new SMViewPagerActivity.SMViewPagerAdapter(getSupportFragmentManager(), SMViewPagerActivity.this));
 

@@ -5,6 +5,7 @@
     <string name="password_hint">Password</string>
     <string name="re_enter_password_hint">Re-enter Password</string>
     <string name="login_button">Login</string>
+    <string name="logout_button">Logout</string>
     <string name="create_account">Create Account</string>
     <string name="login_here">Have an account already? Login here!</string>
     <string name="supermarket">Supermarket</string>
@@ -14,8 +15,6 @@
     <string name="Contact_Org">Contact Number</string>
     <string name="Save_Org_Details">Save Details</string>
     <string name="Type_Org">Organization Type:</string>
-    <string name="Edit_Details">Edit Details</string>
-    <string name="Loading">Loading</string>
     <string name="Item_Name">Item Name</string>
     <string name="How_To_Collect">How To Collect</string>
     <string name="Item_Donated_By">Item Donated By</string>
@@ -33,7 +32,6 @@
     <string name="Delete">Delete</string>
     <string name="Upload_Image_Button">Upload Image</string>
     <string name="Upload_Item">Upload Item</string>
-    <string name="Logout_Button">Logout</string>
     <string name="reset_password">Forgot password? Reset here!</string>
     <string name="Forgot_Password">Forgot Password?</string>
     <string name="Reset_Password_Instruction">We just need your registered email to send you password reset instructions.</string>

@@ -17,9 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"
-        app:tabIndicatorColor="@color/primary_darker"
+        app:tabIndicatorColor="@color/red_primary"
         app:tabTextColor="@color/weldonBlue"
-        app:tabSelectedTextColor="@color/primary_darker"
+        app:tabSelectedTextColor="@color/red_primary"
         app:tabTextAppearance="@style/TabLayoutTextAppearance"/>
 
 </LinearLayout>

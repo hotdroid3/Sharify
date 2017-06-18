@@ -25,9 +25,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:tabMode="fixed"
-            app:tabIndicatorColor="@color/primary_darker"
+            app:tabIndicatorColor="@color/red_primary"
             app:tabTextColor="@color/weldonBlue"
-            app:tabSelectedTextColor="@color/primary_darker"/>
+            app:tabSelectedTextColor="@color/red_primary"/>
     </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -40,7 +40,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        app:backgroundTint="@color/primary_darker"
+        app:backgroundTint="@color/red_primary"
         android:src="@drawable/add"
         />
 
