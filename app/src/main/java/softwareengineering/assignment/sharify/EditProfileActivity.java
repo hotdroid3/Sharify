@@ -236,7 +236,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void onFailedSave()
     {
-        Toast.makeText(getApplicationContext(),"Did not save user data. Please try again.", Toast.LENGTH_LONG).show();
+        Toast.makeText(EditProfileActivity.this,"Did not save user data. Please try again.", Toast.LENGTH_LONG).show();
         saveDetails.setEnabled(true);
     }
 

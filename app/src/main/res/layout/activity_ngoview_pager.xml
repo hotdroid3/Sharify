@@ -19,6 +19,7 @@
         app:tabMode="fixed"
         app:tabIndicatorColor="@color/primary_darker"
         app:tabTextColor="@color/weldonBlue"
-        app:tabSelectedTextColor="@color/primary_darker"/>
+        app:tabSelectedTextColor="@color/primary_darker"
+        app:tabTextAppearance="@style/TabLayoutTextAppearance"/>
 
 </LinearLayout>

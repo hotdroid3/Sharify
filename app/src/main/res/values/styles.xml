@@ -52,4 +52,7 @@
         <item name="android:textColorPrimary">@color/iron</item>
         <item name="android:background">@color/primary_darker</item>
     </style>
+    <style name="TabLayoutTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">10sp</item>
+    </style>
 </resources>

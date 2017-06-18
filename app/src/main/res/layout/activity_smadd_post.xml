@@ -8,25 +8,9 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:paddingTop="24dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
-
-        <ImageView
-            android:id="@+id/previewImg"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_marginTop="25dp"
-            android:layout_gravity="center"/>
-
-        <Button
-            android:id="@+id/uploadImg_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:scaleType="centerCrop"
-            android:text="@string/Upload_Image_Button"
-            android:textColor="@color/white"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -60,6 +44,7 @@
             <EditText android:id="@+id/item_ManufactureDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusableInTouchMode="false"
                 android:inputType="none"
                 android:hint="@string/Manufactured_Date"/>
         </android.support.design.widget.TextInputLayout>
@@ -72,6 +57,7 @@
             <EditText android:id="@+id/item_ExpiryDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusableInTouchMode="false"
                 android:inputType="none"
                 android:hint="@string/Expiry_Date"/>
         </android.support.design.widget.TextInputLayout>
@@ -100,11 +86,29 @@
                 android:hint="@string/How_To_Collect"/>
         </android.support.design.widget.TextInputLayout>
 
+        <ImageView
+            android:id="@+id/previewImg"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+
         <Button
-            android:id="@+id/upload_button"
+            android:id="@+id/uploadImg_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickUpload"
+            android:layout_marginTop="25dp"
+            android:scaleType="centerCrop"
+            android:text="@string/Upload_Image_Button"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/upload_button"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width = "match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/Upload_Item"
             android:textColor="@color/white"/>
     </LinearLayout>

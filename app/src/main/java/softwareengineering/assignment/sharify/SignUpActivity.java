@@ -51,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -143,7 +143,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void onSignUpFail()
     {
-        Toast.makeText(getApplicationContext(), "Unable to create account, please try again!", Toast.LENGTH_LONG).show();
+        Toast.makeText(SignUpActivity.this, "Unable to create account, please try again!", Toast.LENGTH_LONG).show();
         createAccount.setEnabled(true);
     }
     public void onSignUpSuccessful() {
@@ -173,7 +173,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void onSignInSuccessful()
     {
-        Toast.makeText(getApplicationContext(), "Signed in", Toast.LENGTH_LONG).show();
+        Toast.makeText(SignUpActivity.this, "Signed in", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(SignUpActivity.this, EditProfileActivity.class);
         intent.putExtra(CLASS_NAME, "SignUpActivity");
         startActivity(intent);
@@ -182,7 +182,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void onFailedLogin()
     {
-        Toast.makeText(getApplicationContext(),"Login failed. Please try again.", Toast.LENGTH_LONG).show();
+        Toast.makeText(SignUpActivity.this,"Login failed. Please try again.", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();

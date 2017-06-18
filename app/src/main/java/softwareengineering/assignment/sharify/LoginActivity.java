@@ -44,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password = null ;
     private AppCompatButton login_btn = null;
     private TextView signup_btn = null;
+    private TextView reset_btn;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private boolean isConnected = false;
@@ -94,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         password =(EditText)findViewById(R.id.password);
         login_btn = (AppCompatButton)findViewById(R.id.login);
         signup_btn = (TextView)findViewById(R.id.signup);
+        reset_btn = (TextView)findViewById(R.id.resetpassword);
 
         login_btn.setOnClickListener(new View.OnClickListener()
         {
@@ -107,10 +109,17 @@ public class LoginActivity extends AppCompatActivity {
         signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),SignUpActivity.class);
+                Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
                 intent.putExtra(CLASS_NAME,"LoginActivity");
                 startActivity(intent);
                 finish();
+            }
+        });
+        reset_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -224,18 +233,18 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onFailedLogin()
     {
-        Toast.makeText(getApplicationContext(),"Login failed. Please try again.", Toast.LENGTH_LONG).show();
+        Toast.makeText(LoginActivity.this,"Login failed. Please try again.", Toast.LENGTH_LONG).show();
         login_btn.setEnabled(true);
     }
     public void notifyNoConnection()
     {
-        Toast.makeText(getApplicationContext(),"No internet connection!", Toast.LENGTH_LONG).show();
+        Toast.makeText(LoginActivity.this,"No internet connection!", Toast.LENGTH_LONG).show();
         login_btn.setEnabled(true);
     }
 
     public void onSuccessfulLogin()
     {
-        Toast.makeText(getApplicationContext(), "Signed in", Toast.LENGTH_LONG).show();
+        Toast.makeText(LoginActivity.this, "Signed in", Toast.LENGTH_LONG).show();
         login_btn.setEnabled(true);
 
         //Should start a different activity after login

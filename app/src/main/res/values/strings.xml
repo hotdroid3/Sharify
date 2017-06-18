@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sharify</string>
+    <string name="app_name">Perishable Charitables</string>
     <string name="sign_up">Don\'t have an account? Sign up here!</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
@@ -33,6 +33,9 @@
     <string name="Delete">Delete</string>
     <string name="Upload_Image_Button">Upload Image</string>
     <string name="Upload_Item">Upload Item</string>
-
-
+    <string name="Logout_Button">Logout</string>
+    <string name="reset_password">Forgot password? Reset here!</string>
+    <string name="Forgot_Password">Forgot Password?</string>
+    <string name="Reset_Password_Instruction">We just need your registered email to send you password reset instructions.</string>
+    <string name="Reset_Password">Reset Password</string>
 </resources>

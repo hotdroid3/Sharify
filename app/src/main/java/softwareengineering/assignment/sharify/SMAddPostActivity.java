@@ -220,16 +220,10 @@ public class SMAddPostActivity extends AppCompatActivity {
         upLoadImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-//                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                startActivityForResult(galleryIntent, GALLERY_INTENT);
-//
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);//
-//                startActivityForResult(Intent.createChooser(intent, "Select File"),GALLERY_INTENT);
+
+
                 if (android.os.Build.VERSION.SDK_INT >= 23) {
-                    // only for gingerbread and newer versions
+                    // only for marshmallow and newer versions
                     if (!(checkSelfPermission(permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
                         ActivityCompat.requestPermissions(SMAddPostActivity.this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                     }
@@ -259,42 +253,15 @@ public class SMAddPostActivity extends AppCompatActivity {
 
         if ((requestCode == GALLERY_INTENT) && (resultCode == RESULT_OK) && (data != null) && (data.getData() != null)) {
             uri = data.getData();
-
-                //imageView.setImageURI(uri);
-
-
             try
             {
                 Picasso.with(SMAddPostActivity.this).load(uri).fit().centerCrop().into(imageView);
+                imageView.setVisibility(View.VISIBLE);
             }
             catch (Exception e)
             {
-
+                Toast.makeText(SMAddPostActivity.this, "Error loading image!",Toast.LENGTH_LONG).show();
             }
-//            Log.d(TAG, uri.toString());
-//            Toast.makeText(getApplicationContext(), uri.toString(), Toast.LENGTH_LONG).show();
-
-//            try{
-////                Getting image from gallery
-//                //Toast.makeText(getApplicationContext(), uri.toString(), Toast.LENGTH_LONG).show();
-//                //Bitmap bitmap = MediaStore.Images.Media.getBitmap(SMAddPostActivity.this.getContentResolver(),uri);
-////                Setting image to ImageView
-////                imageView.setImageBitmap(bitmap);
-//
-//                Picasso.with(SMAddPostActivity.this).load(uri).fit().centerCrop().into(imageView);
-//
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-//            Bitmap bitmap = null;
-//            try{
-//                bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
-//                imageView.setImageBitmap(bitmap);
-//                //Picasso.with(SMAddPostActivity.this).load(bitmap).fit().centerCrop().into(imageView);
-//            }catch (IOException e)
-//            {
-//
-//            }
 
             uploadPicture();
 
@@ -320,7 +287,7 @@ public class SMAddPostActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
                     // Handle unsuccessful uploads
-                    Toast.makeText(getApplicationContext(), "Failed uploading image!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SMAddPostActivity.this, "Failed uploading image!", Toast.LENGTH_LONG).show();
                     isImgUploaded = false;
                     progDialog.dismiss();
                 }

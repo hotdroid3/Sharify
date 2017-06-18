@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ public class ViewProfileFragment extends Fragment {
     private TextView orgContact;
     private ImageButton editDetails;
     private UserInfo userInfo;
-
+    private Button logout;
 
     public static final String USERINFO = "USER_INFO";
     public static final String CLASS_NAME = "CLASS_NAME";
@@ -73,6 +74,7 @@ public class ViewProfileFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 updateView(dataSnapshot);
+                progDialog.dismiss();
             }
 
             @Override
@@ -81,7 +83,7 @@ public class ViewProfileFragment extends Fragment {
             }
         };
         mDataRef.addValueEventListener(userInfoListener);
-        progDialog.dismiss();
+
     }
 
     private void updateView(DataSnapshot dataSnapshot)
@@ -111,6 +113,7 @@ public class ViewProfileFragment extends Fragment {
         orgAddress = (TextView)view.findViewById(R.id.viewAddress);
         orgContact = (TextView)view.findViewById(R.id.viewContact);
         editDetails = (ImageButton)view.findViewById(R.id.editDetails);
+        logout = (Button)view.findViewById(R.id.logout);
 
 
 
@@ -125,6 +128,16 @@ public class ViewProfileFragment extends Fragment {
                 startActivity(intent);
                 //getActivity().finish();
                 //doesn't allow user to pressback in editprofile profile activity;
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //mAuth.signOut();
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
 
