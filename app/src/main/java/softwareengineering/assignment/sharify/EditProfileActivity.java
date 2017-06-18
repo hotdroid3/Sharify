@@ -204,7 +204,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
         if(this.organizationType == null)
         {
-            Toast.makeText(EditProfileActivity.this, "Please choose your type of organization!", Toast.LENGTH_LONG).show();
+            Toast.makeText(EditProfileActivity.this, "Please choose your type of organization", Toast.LENGTH_LONG).show();
             inputNull = true;
         }
 
@@ -244,7 +244,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void onFailedSave()
     {
-        Toast.makeText(EditProfileActivity.this,"Did not save user data. Please try again.", Toast.LENGTH_LONG).show();
+        Toast.makeText(EditProfileActivity.this,"User data is not saved. Please try again.", Toast.LENGTH_LONG).show();
         saveDetails.setEnabled(true);
     }
 
