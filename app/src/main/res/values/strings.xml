@@ -29,6 +29,9 @@
     <string name="Cancel_Order">Cancel Order</string>
     <string name="Item_Collected_By">Item Collected By</string>
     <string name="Collected">Item Collected</string>
+    <string name="Edit">Edit</string>
+    <string name="Delete">Delete</string>
+
 
 
 </resources>

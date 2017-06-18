@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import static softwareengineering.assignment.sharify.ViewProfileFragment.CLASS_NAME;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText emailInput = null;
@@ -173,6 +175,7 @@ public class SignUpActivity extends AppCompatActivity {
     {
         Toast.makeText(getApplicationContext(), "Signed in", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(SignUpActivity.this, EditProfileActivity.class);
+        intent.putExtra(CLASS_NAME, "SignUpActivity");
         startActivity(intent);
         finish();
     }

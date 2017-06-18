@@ -43,7 +43,7 @@ public class SMViewPagerActivity extends AppCompatActivity {
             switch (position)
             {
                 case 0:
-                    return NGOAvailableItemsFragment.newInstance();
+                    return SMUploadedItemsFragment.newInstance();
                 case 1:
                     return SMAcceptedItemsFragment.newInstance();
                 case 2:

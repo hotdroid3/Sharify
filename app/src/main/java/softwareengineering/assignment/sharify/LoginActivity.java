@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
@@ -26,6 +28,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
@@ -77,10 +80,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-        if(mAuth.getCurrentUser() != null)
-        {
-            startNewActivity();
-        }
+        mDatabase = FirebaseDatabase.getInstance();
+        mUserRef = mDatabase.getReference();
+
+
+//        if(mAuth.getCurrentUser() != null)
+//        {
+//            startNewActivity();
+//        }
 
 
         email = (EditText)findViewById(R.id.email);
@@ -266,14 +273,19 @@ public class LoginActivity extends AppCompatActivity {
 
     public void startNewActivity()
     {
-        mDatabase = FirebaseDatabase.getInstance();
-        mUserRef = mDatabase.getReference();
-        mUserRef = mUserRef.child("Users Information").child(mAuth.getCurrentUser().getUid());
 
+        mUserRef = mUserRef.child("Users Information").child(mAuth.getCurrentUser().getUid());
+        final ProgressDialog progDialog = new ProgressDialog(LoginActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progDialog.setIndeterminate(true);
+        progDialog.setMessage("Loading User data...");
+        progDialog.show();
         ValueEventListener userListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userInfo = dataSnapshot.getValue(UserInfo.class);
+                progDialog.dismiss();
+                startViewPager();
             }
 
             @Override
@@ -283,6 +295,14 @@ public class LoginActivity extends AppCompatActivity {
         };
         mUserRef.addValueEventListener(userListener);
 
+
+
+
+
+
+    }
+    private void startViewPager()
+    {
         if(userInfo!= null)
         {
             String userType = userInfo.getOrganizationType();
@@ -298,8 +318,14 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         }
-
-
+        else if(userInfo == null)
+        {
+            Intent intent = new Intent(LoginActivity.this, EditProfileActivity.class);
+            intent.putExtra(CLASS_NAME,"LoginActivity");
+            startActivity(intent);
+            finish();
+        }
     }
+
 
 }

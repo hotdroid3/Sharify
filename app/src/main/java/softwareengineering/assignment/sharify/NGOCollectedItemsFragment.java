@@ -201,14 +201,15 @@ public class NGOCollectedItemsFragment extends Fragment {
                         if(index != -1)
                         {
                             collectedItemsList.set(index, updatedItem);
+                            if(adapter != null)
+                            {
+                                //recyclerViewAdapter.notifyItemChanged(index);
+                                adapter.notifyDataSetChanged();
+                                collectedItemsRecyclerView.setVisibility(View.VISIBLE);
+                                mProgressBar.setVisibility(View.GONE);
+                            }
                         }
-                        if(adapter != null)
-                        {
-                            //recyclerViewAdapter.notifyItemChanged(index);
-                            adapter.notifyDataSetChanged();
-                            collectedItemsRecyclerView.setVisibility(View.VISIBLE);
-                            mProgressBar.setVisibility(View.GONE);
-                        }
+
                     }
                 }
             }

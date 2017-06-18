@@ -70,8 +70,8 @@ public class NGOViewAvailableItemDetailsActivity extends AppCompatActivity {
         ValueEventListener itemInfoListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                CharityItemInfo charityItem = dataSnapshot.getValue(CharityItemInfo.class);
-                updateView(charityItem);
+                charityItemInfo = dataSnapshot.getValue(CharityItemInfo.class);
+                updateView(charityItemInfo);
             }
 
             @Override

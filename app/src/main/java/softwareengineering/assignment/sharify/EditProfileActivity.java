@@ -22,6 +22,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "EditProfileActivity";
 
+    private UserInfo userInfo;
     private EditText orgName = null;
     private EditText orgAddress = null;
     private EditText orgContact = null;
@@ -142,7 +143,7 @@ public class EditProfileActivity extends AppCompatActivity {
             progDialog.setMessage("Signing in");
             progDialog.show();
 
-            final UserInfo userInfo = new UserInfo(email,name,address,contact,this.organizationType);
+            userInfo = new UserInfo(email,name,address,contact,this.organizationType);
 
             Runnable saveDetails = new Runnable() {
                 @Override
@@ -211,15 +212,15 @@ public class EditProfileActivity extends AppCompatActivity {
         String callingActivity = receivedIntent.getStringExtra(CLASS_NAME);
         if(callingActivity != null)
         {
-            if(callingActivity.equals("LoginActivity"))
+            if(callingActivity.equals("LoginActivity") || callingActivity.equals("SignUpActivity"))
             {
-                if(this.organizationType.equals("Non-governmental Organization"))
+                if(userInfo.getOrganizationType().equals("Non-governmental Organization"))
                 {
                     Intent intent = new Intent(EditProfileActivity.this, NGOViewPagerActivity.class);
                     startActivity(intent);
                     finish();
                 }
-                else if(this.organizationType.equals("Supermarket"))
+                else if(userInfo.getOrganizationType().equals("Supermarket"))
                 {
                     Intent intent = new Intent(EditProfileActivity.this, SMViewPagerActivity.class);
                     startActivity(intent);
@@ -230,8 +231,6 @@ public class EditProfileActivity extends AppCompatActivity {
         else {
             finish();
         }
-
-        //Need to implement which viewpager to choose;
 
     }
 

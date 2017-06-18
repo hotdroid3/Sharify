@@ -57,8 +57,12 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".SMViewAcceptedItemDetailsActivity"
-            android:theme="@style/AppTheme.Dark"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".SMViewUploadedItemDetails"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark"></activity>
     </application>
 
 </manifest>

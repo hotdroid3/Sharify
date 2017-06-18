@@ -220,14 +220,15 @@ public class SMAcceptedItemsFragment extends Fragment {
                     if(index != -1)
                     {
                         SMacceptedItemsList.set(index, updatedItem);
+                        if(adapter != null)
+                        {
+                            //recyclerViewAdapter.notifyItemChanged(index);
+                            adapter.notifyDataSetChanged();
+                            SMAcceptedItemsRecyclerView.setVisibility(View.VISIBLE);
+                            mProgressBar.setVisibility(View.GONE);
+                        }
                     }
-                    if(adapter != null)
-                    {
-                        //recyclerViewAdapter.notifyItemChanged(index);
-                        adapter.notifyDataSetChanged();
-                        SMAcceptedItemsRecyclerView.setVisibility(View.VISIBLE);
-                        mProgressBar.setVisibility(View.GONE);
-                    }
+
                 }
             }
 

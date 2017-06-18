@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,44 +19,51 @@ import com.squareup.picasso.Picasso;
 
 import static softwareengineering.assignment.sharify.NGOAvailableItemsFragment.CHARITY_ITEM_INFO;
 
-public class SMViewAcceptedItemDetailsActivity extends AppCompatActivity {
+public class SMViewUploadedItemDetails extends AppCompatActivity {
 
-
-    private FirebaseDatabase mDatabase;
     private DatabaseReference mDataRef;
-
+    private DatabaseReference mUserRef;
+    private FirebaseDatabase mDatabase;
     private CharityItemInfo charityItemInfo;
+    private FirebaseAuth mAuth;
+    private UserInfo userInfo;
+
 
     private ImageView itemImage;
     private TextView itemName;
-    private TextView itemCollector;
     private TextView itemDescription;
     private TextView itemManufacturedDate;
     private TextView itemExpiryDate;
     private TextView itemQuantity;
     private TextView itemCollectionDescription;
     private TextView itemContactDetails;
-    private Button mCollectedButton;
+    private Button editButton;
+    private Button deleteButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_smview_accepted_details);
+        setContentView(R.layout.activity_smview_uploaded_details);
 
+
+        mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
         mDataRef = mDatabase.getReference();
         mDataRef = mDataRef.child("Charity Items' Information");
+        mUserRef = mDatabase.getReference();
 
         itemImage = (ImageView)findViewById(R.id.itemPhoto);
         itemName = (TextView)findViewById(R.id.viewItemName);
-        itemCollector = (TextView)findViewById(R.id.itemCollector);
         itemDescription = (TextView)findViewById(R.id.viewItemDescription);
         itemManufacturedDate = (TextView)findViewById(R.id.viewManufactured);
         itemExpiryDate = (TextView)findViewById(R.id.viewExpiry);
         itemQuantity = (TextView)findViewById(R.id.viewQuantity);
         itemCollectionDescription = (TextView)findViewById(R.id.viewCollectionMethod);
         itemContactDetails = (TextView)findViewById(R.id.viewContact);
-        mCollectedButton = (Button)findViewById(R.id.collectedButton);
+        editButton = (Button)findViewById(R.id.editButton);
+        deleteButton = (Button)findViewById(R.id.deleteButton);
+
 
         Intent intent = getIntent();
         charityItemInfo = intent.getParcelableExtra(CHARITY_ITEM_INFO);
@@ -71,21 +79,27 @@ public class SMViewAcceptedItemDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(SMViewAcceptedItemDetailsActivity.this, "Loading error!" ,Toast.LENGTH_LONG).show();
+                Toast.makeText(SMViewUploadedItemDetails.this, "Loading error!" ,Toast.LENGTH_LONG).show();
             }
         };
         mDataRef.addValueEventListener(itemInfoListener);
 
-        mCollectedButton.setOnClickListener(new View.OnClickListener() {
+        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateCollected();
-                //Intent intent = new Intent(NGOViewAvailableItemDetailsActivity.this, NGOViewPagerActivity.class);
-                //startActivity(intent);
+                //start addpost activity with parcelable do not finish()
+            }
+        });
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteItem(charityItemInfo);
                 finish();
             }
         });
     }
+
+
     @Override
     protected void onResume()
     {
@@ -93,39 +107,38 @@ public class SMViewAcceptedItemDetailsActivity extends AppCompatActivity {
         updateView(charityItemInfo);
 
     }
-
-    private void updateCollected()
-    {
-        Runnable updateTask = new Runnable() {
-            @Override
-            public void run() {
-                if(charityItemInfo!= null)
-                {
-                    charityItemInfo.setCollected(true);
-                    DatabaseReference databaseReference = mDatabase.getReference();
-                    databaseReference = databaseReference.child("Charity Items' Information").child(charityItemInfo.getItemUUID());
-                    databaseReference.setValue(charityItemInfo);
-                }
-
-            }
-        };
-        new Thread(updateTask).start();
-    }
-
-
     private void updateView(CharityItemInfo charityItemInfo)
     {
         if (charityItemInfo != null)
         {
-            Picasso.with(SMViewAcceptedItemDetailsActivity.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
+            Picasso.with(SMViewUploadedItemDetails.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
             itemName.setText(charityItemInfo.getItemName());
-            itemCollector.setText(charityItemInfo.getItemDonatorName());
             itemDescription.setText(charityItemInfo.getItemDescription());
             itemManufacturedDate.setText(charityItemInfo.getItemManufacturedDate());
             itemExpiryDate.setText(charityItemInfo.getItemExpiryDate());
             itemQuantity.setText(String.valueOf(charityItemInfo.getItemQuantity()));
             itemCollectionDescription.setText(charityItemInfo.getItemCollectionDescription());
             itemContactDetails.setText(charityItemInfo.getContactDetails());
+
         }
+    }
+
+    private void deleteItem(final CharityItemInfo charityItemInfo)
+    {
+        Runnable deleteTask = new Runnable() {
+            @Override
+            public void run() {
+                if(charityItemInfo != null)
+                {
+                    DatabaseReference databaseReference = mDatabase.getReference();
+                    databaseReference = databaseReference.child("Charity Items' Information").child(charityItemInfo.getItemUUID());
+                    databaseReference.setValue(null);
+                }
+
+            }
+        };
+
+        new Thread(deleteTask).start();
+
     }
 }

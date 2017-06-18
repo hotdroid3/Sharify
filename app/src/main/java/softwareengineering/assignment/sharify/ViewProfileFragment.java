@@ -73,7 +73,6 @@ public class ViewProfileFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 updateView(dataSnapshot);
-                progDialog.dismiss();
             }
 
             @Override
@@ -82,7 +81,7 @@ public class ViewProfileFragment extends Fragment {
             }
         };
         mDataRef.addValueEventListener(userInfoListener);
-
+        progDialog.dismiss();
     }
 
     private void updateView(DataSnapshot dataSnapshot)

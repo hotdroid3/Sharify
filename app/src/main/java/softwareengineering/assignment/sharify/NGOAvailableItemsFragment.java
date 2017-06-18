@@ -154,14 +154,15 @@ public class NGOAvailableItemsFragment extends Fragment {
             if(index != -1)
             {
                 charityItemInfoArrayList.set(index, updatedItem);
+                if(recyclerViewAdapter != null)
+                {
+                    //recyclerViewAdapter.notifyItemChanged(index);
+                    recyclerViewAdapter.notifyDataSetChanged();
+                    availableItemsRecycler.setVisibility(View.VISIBLE);
+                    mProgressBar.setVisibility(View.GONE);
+                }
             }
-            if(recyclerViewAdapter != null)
-            {
-                //recyclerViewAdapter.notifyItemChanged(index);
-                recyclerViewAdapter.notifyDataSetChanged();
-                availableItemsRecycler.setVisibility(View.VISIBLE);
-                mProgressBar.setVisibility(View.GONE);
-            }
+
         }
     }
 

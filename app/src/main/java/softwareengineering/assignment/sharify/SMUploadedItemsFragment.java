@@ -2,6 +2,7 @@ package softwareengineering.assignment.sharify;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,29 +24,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
-import java.util.UUID;
+import java.util.List;
 
 import static softwareengineering.assignment.sharify.NGOAvailableItemsFragment.CHARITY_ITEM_INFO;
 
 
-/**
- * A simple {@link Fragment} subclass.
+public class SMUploadedItemsFragment extends Fragment {
 
- * Use the {@link NGOCollectedItemsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class SMCollectedItemsFragment extends Fragment {
+
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDataRef;
     private DatabaseReference mUserRef;
-    private RecyclerView SMcollectedItemsRecyclerView;
-    private SMCollectedItemsFragment.SMCollectedItemsRecyclerViewAdapter adapter;
+    private RecyclerView uploadedItemsRecyclerView;
+    private SMUploadedItemsFragment.UploadedItemRecyclerViewAdapter adapter;
     private int adapterPosition;
     private ProgressBar mProgressBar;
-    private ArrayList<CharityItemInfo> SMcollectedItemsList = new ArrayList<CharityItemInfo>();
+    private ArrayList<CharityItemInfo> uploadedItemsList = new ArrayList<CharityItemInfo>();
     private UserInfo userInfo;
 
     private static final int DISPLAY_NAME_LENGTH = 25;
@@ -53,15 +52,14 @@ public class SMCollectedItemsFragment extends Fragment {
     private static final int DISPLAY_DONATOR_LENGTH = 52;
     private static final int LENGTH_OF_DONATOR_NAME_SUBSTRING = 48;
 
-
-    public SMCollectedItemsFragment() {
+    public SMUploadedItemsFragment() {
         // Required empty public constructor
     }
 
 
-    public static SMCollectedItemsFragment newInstance() {
-        SMCollectedItemsFragment fragment = new SMCollectedItemsFragment();
-        //implement parcelable?
+    public static SMUploadedItemsFragment newInstance() {
+        SMUploadedItemsFragment fragment = new SMUploadedItemsFragment();
+
         return fragment;
     }
 
@@ -91,13 +89,15 @@ public class SMCollectedItemsFragment extends Fragment {
             }
         };
         mUserRef.addValueEventListener(userListener);
+
     }
+
 
     @Override
     public void onStart(){
         super.onStart();
-        SMcollectedItemsList.clear();
-        ChildEventListener collectedItemsListener = new ChildEventListener() {
+        uploadedItemsList.clear();
+        ChildEventListener acceptedItemsListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 addItem(dataSnapshot);
@@ -123,36 +123,36 @@ public class SMCollectedItemsFragment extends Fragment {
                 Toast.makeText(getActivity(), "Error loading items!", Toast.LENGTH_LONG).show();
             }
         };
-        mDataRef.addChildEventListener(collectedItemsListener);
+        mDataRef.addChildEventListener(acceptedItemsListener);
     }
+
 
     private void addItem(DataSnapshot dataSnapshot)
     {
 
         CharityItemInfo charityItemInfo = dataSnapshot.getValue(CharityItemInfo.class);
+
         boolean isAccepted = charityItemInfo.isAccepted();
         boolean isCollected = charityItemInfo.isCollected();
+
         if(userInfo != null)
         {
             String userID = mAuth.getCurrentUser().getUid().toString();
-            if(isAccepted && isCollected)
+
+            if(!isAccepted && !isCollected)
             {
-                if(charityItemInfo.getItemDonatorUid() != null)
+                if(charityItemInfo.getItemDonatorUid().equals(userID))
                 {
-                    if(charityItemInfo.getItemDonatorUid().equals(userID))
+                    uploadedItemsList.add(charityItemInfo);
+                    if(adapter != null)
                     {
-                        SMcollectedItemsList.add(charityItemInfo);
-                        if(adapter != null)
-                        {
-                            //testing
-                            //recyclerViewAdapter.notifyItemInserted(charityItemInfoArrayList.size()-1);
-                            adapter.notifyDataSetChanged();
-                            SMcollectedItemsRecyclerView.setVisibility(View.VISIBLE);
-                            mProgressBar.setVisibility(View.GONE);
-                        }
+                        //testing
+                        //recyclerViewAdapter.notifyItemInserted(charityItemInfoArrayList.size()-1);
+                        adapter.notifyDataSetChanged();
+                        uploadedItemsRecyclerView.setVisibility(View.VISIBLE);
+                        mProgressBar.setVisibility(View.GONE);
                     }
                 }
-
             }
         }
 
@@ -162,59 +162,42 @@ public class SMCollectedItemsFragment extends Fragment {
     private void updateItem(DataSnapshot dataSnapshot)
     {
         int index = -1;
+
         CharityItemInfo updatedItem = dataSnapshot.getValue(CharityItemInfo.class);
+
         boolean isAccepted = updatedItem.isAccepted();
         boolean isCollected = updatedItem.isCollected();
+
         if(userInfo != null)
         {
             String userID = mAuth.getCurrentUser().getUid().toString();
-            if(updatedItem.getItemDonatorUid() == null)
-            {
-                for(CharityItemInfo charityItemInfo: SMcollectedItemsList)
-                {
-                    if(updatedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
-                    {
-                        index = SMcollectedItemsList.indexOf(charityItemInfo);
-                    }
-                }
-                if(index != -1)
-                {
-                    SMcollectedItemsList.remove(index);
-                    if(adapter != null)
-                    {
-//              recyclerViewAdapter.notifyItemRemoved(index);
-//              recyclerViewAdapter.notifyItemRangeChanged(index, charityItemInfoArrayList.size());
-                        adapter.notifyDataSetChanged();
-                    }
-                }
-            }
-            else{
-                if(updatedItem.getItemDonatorUid().equals(userID))
-                {
-                    if(isAccepted && isCollected)
-                    {
-                        for(CharityItemInfo charityItemInfo: SMcollectedItemsList)
-                        {
-                            if(updatedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
-                            {
-                                index = SMcollectedItemsList.indexOf(charityItemInfo);
-                            }
-                        }
-                        if(index != -1)
-                        {
-                            SMcollectedItemsList.set(index, updatedItem);
-                            if(adapter != null)
-                            {
-                                //recyclerViewAdapter.notifyItemChanged(index);
-                                adapter.notifyDataSetChanged();
-                                SMcollectedItemsRecyclerView.setVisibility(View.VISIBLE);
-                                mProgressBar.setVisibility(View.GONE);
-                            }
-                        }
 
+            if(updatedItem.getItemDonatorUid().equals(userID))
+            {
+                if(!isAccepted && !isCollected)
+                {
+                    for(CharityItemInfo charityItemInfo: uploadedItemsList)
+                    {
+                        if(updatedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
+                        {
+                            index = uploadedItemsList.indexOf(charityItemInfo);
+                        }
                     }
+                    if(index != -1)
+                    {
+                        uploadedItemsList.set(index, updatedItem);
+                        if(adapter != null)
+                        {
+                            //recyclerViewAdapter.notifyItemChanged(index);
+                            adapter.notifyDataSetChanged();
+                            uploadedItemsRecyclerView.setVisibility(View.VISIBLE);
+                            mProgressBar.setVisibility(View.GONE);
+                        }
+                    }
+
                 }
             }
+
 
 
         }
@@ -224,17 +207,19 @@ public class SMCollectedItemsFragment extends Fragment {
     private void removeItem(DataSnapshot dataSnapshot)
     {
         int index = -1;
+
         CharityItemInfo deletedItem = dataSnapshot.getValue(CharityItemInfo.class);
-        for(CharityItemInfo charityItemInfo: SMcollectedItemsList)
+
+        for(CharityItemInfo charityItemInfo: uploadedItemsList)
         {
             if(deletedItem.getItemUUID().equals(charityItemInfo.getItemUUID()))
             {
-                index = SMcollectedItemsList.indexOf(charityItemInfo);
+                index = uploadedItemsList.indexOf(charityItemInfo);
             }
         }
         if(index != -1)
         {
-            SMcollectedItemsList.remove(index);
+            uploadedItemsList.remove(index);
             if(adapter != null)
             {
 //              recyclerViewAdapter.notifyItemRemoved(index);
@@ -246,102 +231,109 @@ public class SMCollectedItemsFragment extends Fragment {
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_smuploaded_items,container,false);
 
-        View view = inflater.inflate(R.layout.fragment_smcollected_items,container, false);
-        SMcollectedItemsRecyclerView = (RecyclerView) view.findViewById(R.id.collectedItemsRecyclerView);
-        SMcollectedItemsRecyclerView.setHasFixedSize(true);
+        uploadedItemsRecyclerView = (RecyclerView)view.findViewById(R.id.uploadedRecyclerView);
+        uploadedItemsRecyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        SMcollectedItemsRecyclerView.setLayoutManager(linearLayoutManager);
-        SMcollectedItemsList.clear();
-        adapter = new SMCollectedItemsFragment.SMCollectedItemsRecyclerViewAdapter(getActivity(), SMcollectedItemsList);
-        SMcollectedItemsRecyclerView.setAdapter(adapter);
+        uploadedItemsRecyclerView.setLayoutManager(linearLayoutManager);
+        uploadedItemsList.clear();
+        adapter = new SMUploadedItemsFragment.UploadedItemRecyclerViewAdapter(getActivity(),uploadedItemsList);
+        uploadedItemsRecyclerView.setAdapter(adapter);
         mProgressBar = (ProgressBar)view.findViewById(R.id.progressBar);
 
         return view;
     }
 
 
+    public class UploadedItemRecyclerViewAdapter extends RecyclerView.Adapter<SMUploadedItemsFragment.UploadedItemViewHolder> {
 
-    public class SMCollectedItemsRecyclerViewAdapter extends RecyclerView.Adapter<SMCollectedItemsFragment.SMCollectedItemViewHolder> {
-
-        private ArrayList<CharityItemInfo> collectedItems;
+        private ArrayList<CharityItemInfo> uploadedItems;
         protected Context context;
 
-        public SMCollectedItemsRecyclerViewAdapter(Context context, ArrayList<CharityItemInfo> items) {
-            this.collectedItems = items;
+        public UploadedItemRecyclerViewAdapter(Context context, ArrayList<CharityItemInfo> items) {
+            this.uploadedItems = items;
             this.context = context;
         }
         @Override
-        public SMCollectedItemsFragment.SMCollectedItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            SMCollectedItemsFragment.SMCollectedItemViewHolder viewHolder = null;
-            View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_sm_collected_items_cardview, parent, false);
-            viewHolder = new SMCollectedItemsFragment.SMCollectedItemViewHolder(layoutView, collectedItems);
+        public SMUploadedItemsFragment.UploadedItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+            SMUploadedItemsFragment.UploadedItemViewHolder viewHolder = null;
+            View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_sm_available_items_cardview, parent, false);
+            viewHolder = new SMUploadedItemsFragment.UploadedItemViewHolder(layoutView, uploadedItems);
             return viewHolder;
         }
         @Override
-        public void onBindViewHolder(SMCollectedItemsFragment.SMCollectedItemViewHolder holder, int position) {
-            String itemName = collectedItems.get(position).getItemName();
-            String itemCollectorName = collectedItems.get(position).getItemCollectorName();
+        public void onBindViewHolder(SMUploadedItemsFragment.UploadedItemViewHolder holder, int position) {
+
+            String itemName = uploadedItems.get(position).getItemName();
+            String itemDesc = uploadedItems.get(position).getItemDescription();
+
             if(itemName.length() > DISPLAY_NAME_LENGTH)
             {
                 itemName = itemName.substring(0,LENGTH_OF_NAME_SUBSTRING);
                 itemName = itemName + "...";
             }
-            if(itemCollectorName.length() > DISPLAY_DONATOR_LENGTH)
+            if(itemDesc.length() > DISPLAY_DONATOR_LENGTH)
             {
-                itemCollectorName = itemCollectorName.substring(0,LENGTH_OF_DONATOR_NAME_SUBSTRING);
-                itemCollectorName = itemCollectorName + "...";
+                itemDesc = itemDesc.substring(0,LENGTH_OF_DONATOR_NAME_SUBSTRING);
+                itemDesc = itemDesc + "...";
             }
             holder.itemNameView.setText(itemName);
-            holder.itemCollectorView.setText("Accepted by: " + itemCollectorName);
-            Picasso.with(getActivity()).load(collectedItems.get(position).getImgUri()).fit().centerCrop().into(holder.itemPhotoView);
+            holder.itemDescription.setText("Description: " + itemDesc);
+            Picasso.with(getActivity()).load(uploadedItems.get(position).getImgUri()).fit().centerCrop().into(holder.itemPhotoView);
             //testing
             adapterPosition = holder.getAdapterPosition();
         }
         @Override
         public int getItemCount() {
-            return this.collectedItems.size();
+            return this.uploadedItems.size();
         }
 
 
     }
 
 
-    public class SMCollectedItemViewHolder extends RecyclerView.ViewHolder
-    {
-        private static final String TAG = "SMCollectedItemViewHolder";
+
+    public class UploadedItemViewHolder extends RecyclerView.ViewHolder{
+        private static final String TAG = "UploadedItemViewHolder";
 
         public ImageView itemPhotoView;
         public TextView itemNameView;
-        public TextView itemCollectorView;
+        public TextView itemDescription;
 
-        private ArrayList<CharityItemInfo> sm_collectedItems;
+        private ArrayList<CharityItemInfo> uploadedItems;
 
-        public SMCollectedItemViewHolder(final View itemView, final ArrayList<CharityItemInfo> items) {
+        public UploadedItemViewHolder(final View itemView, final ArrayList<CharityItemInfo> items) {
             super(itemView);
-            this.sm_collectedItems = items;
-            itemPhotoView = (ImageView) itemView.findViewById(R.id.itemPicture);
-            itemNameView = (TextView) itemView.findViewById(R.id.acceptedItemName);
-            itemCollectorView = (TextView) itemView.findViewById(R.id.itemCollectorName);
+            this.uploadedItems = items;
+
+            itemPhotoView = (ImageView)itemView.findViewById(R.id.itemPicture);
+            itemNameView = (TextView) itemView.findViewById(R.id.itemName);
+            itemDescription = (TextView)itemView.findViewById(R.id.itemDesc);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     CharityItemInfo charityItemInfo;
 
-                    Intent intent = new Intent(getActivity(), SMViewCollectedItemDetailsActivity.class);
-                    try {
-                        charityItemInfo = SMcollectedItemsList.get(adapterPosition);
+                    Intent intent = new Intent(getActivity(),SMViewUploadedItemDetails.class);
+                    try
+                    {
+                        charityItemInfo = uploadedItemsList.get(adapterPosition);
                         Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
                         intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);
                         startActivity(intent);
 
-                    } catch (IndexOutOfBoundsException e) {
-                        Toast.makeText(getActivity(), "Error, no more items available! ", Toast.LENGTH_LONG).show();
+                    }catch (IndexOutOfBoundsException e)
+                    {
+                        Toast.makeText(getActivity(),"Error, no more items available! ", Toast.LENGTH_LONG).show();
                     }
 
                     //getActivity().finish();
