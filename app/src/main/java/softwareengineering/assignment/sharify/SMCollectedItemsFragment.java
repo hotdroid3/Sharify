@@ -300,7 +300,7 @@ public class SMCollectedItemsFragment extends Fragment {
             holder.itemCollectorView.setText("Accepted by: " + itemCollectorName);
             Picasso.with(getActivity()).load(collectedItems.get(position).getImgUri()).fit().centerCrop().into(holder.itemPhotoView);
             //testing
-            adapterPosition = holder.getAdapterPosition();
+            //adapterPosition = holder.getAdapterPosition();
         }
         @Override
         public int getItemCount() {
@@ -335,6 +335,7 @@ public class SMCollectedItemsFragment extends Fragment {
 
                     Intent intent = new Intent(getActivity(), SMViewCollectedItemDetailsActivity.class);
                     try {
+                        adapterPosition = getAdapterPosition();
                         charityItemInfo = SMcollectedItemsList.get(adapterPosition);
                         Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
                         intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);

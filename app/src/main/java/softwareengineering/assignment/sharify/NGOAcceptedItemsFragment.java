@@ -297,7 +297,7 @@ public class NGOAcceptedItemsFragment extends Fragment {
             holder.itemDonatorView.setText("Donated by: " + itemDonator);
             Picasso.with(getActivity()).load(acceptedItems.get(position).getImgUri()).fit().centerCrop().into(holder.itemPhotoView);
             //testing
-            adapterPosition = holder.getAdapterPosition();
+            //adapterPosition = holder.getAdapterPosition();
         }
         @Override
         public int getItemCount() {
@@ -333,6 +333,7 @@ public class NGOAcceptedItemsFragment extends Fragment {
 //
                     Intent intent = new Intent(getActivity(), NGOViewAcceptedItemDetailsActivity.class);
                     try {
+                        adapterPosition = getAdapterPosition();
                         charityItemInfo = acceptedItemsList.get(adapterPosition);
                         Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
                         intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);

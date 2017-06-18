@@ -284,7 +284,7 @@ public class SMUploadedItemsFragment extends Fragment {
             holder.itemDescription.setText("Description: " + itemDesc);
             Picasso.with(getActivity()).load(uploadedItems.get(position).getImgUri()).fit().centerCrop().into(holder.itemPhotoView);
             //testing
-            adapterPosition = holder.getAdapterPosition();
+            //adapterPosition = holder.getAdapterPosition();
         }
         @Override
         public int getItemCount() {
@@ -322,6 +322,7 @@ public class SMUploadedItemsFragment extends Fragment {
                     Intent intent = new Intent(getActivity(),SMViewUploadedItemDetailsActivity.class);
                     try
                     {
+                        adapterPosition = getAdapterPosition();
                         charityItemInfo = uploadedItemsList.get(adapterPosition);
                         Toast.makeText(getActivity(), "Selected " + itemNameView.getText().toString(), Toast.LENGTH_LONG).show();
                         intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);

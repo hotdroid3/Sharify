@@ -246,7 +246,7 @@ public class NGOAvailableItemsFragment extends Fragment {
             holder.itemNameView.setText(itemName);
             Picasso.with(getActivity()).load(itemsArrayList.get(position).getImgUri()).fit().centerCrop().into(holder.itemPhotoView);
             //testing
-            adapterPosition = holder.getAdapterPosition();
+            //adapterPosition = holder.getAdapterPosition();
         }
         @Override
         public int getItemCount() {
