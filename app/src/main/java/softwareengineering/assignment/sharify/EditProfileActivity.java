@@ -84,19 +84,21 @@ public class EditProfileActivity extends AppCompatActivity {
         orgContact.setText(userInfo.getOrganizationContact());
         Intent intent = getIntent();
         String callingActivity = intent.getStringExtra(CLASS_NAME);
+        if(userInfo.getOrganizationType().equals("Non-governmental Organization"))
+        {
+            mNGO.setChecked(true);
+            this.organizationType = "Non-governmental Organization";
+
+        }
+        else
+        {
+            mSuper.setChecked(true);
+            this.organizationType = "Supermarket";
+        }
+
         if(callingActivity == null)
         {
-//            if(userInfo.getOrganizationType().equals("Non-governmental Organization"))
-//            {
-//                mNGO.setChecked(true);
-//                this.organizationType = "Non-governmental Organization";
 //
-//            }
-//            else
-//            {
-//                mSuper.setChecked(true);
-//                this.organizationType = "Supermarket";
-//            }
 //            mNGO.setEnabled(false);
 //            mSuper.setEnabled(false);
 //            mNGO.setVisibility(View.GONE);
