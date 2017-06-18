@@ -132,6 +132,7 @@ public class SMAddPostActivity extends AppCompatActivity {
 
         if(charityItem != null)
         {
+            this.isImgUploaded = true;
             final ProgressDialog pDialog = new ProgressDialog(SMAddPostActivity.this,
                     R.style.AppTheme_Dark_Dialog);
             pDialog.setIndeterminate(true);
