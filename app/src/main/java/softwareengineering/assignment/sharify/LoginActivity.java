@@ -287,7 +287,7 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressDialog progDialog = new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progDialog.setIndeterminate(true);
-        progDialog.setMessage("Loading User data...");
+        progDialog.setMessage("Loading user data...");
         progDialog.show();
         ValueEventListener userListener = new ValueEventListener() {
             @Override
