@@ -30,7 +30,7 @@
     <string name="Collected">Item Collected</string>
     <string name="Edit">Edit</string>
     <string name="Delete">Delete</string>
-    <string name="Upload_Image_Button">Upload Image</string>
+    <string name="Upload_Image_Button">Choose Image From Gallery</string>
     <string name="Upload_Item">Upload Item</string>
     <string name="reset_password">Forgot password? Reset here!</string>
     <string name="Forgot_Password">Forgot Password?</string>

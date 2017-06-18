@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth = null;
     private RadioButton mNGO;
     private RadioButton mSuper;
+    private RadioGroup radioGroup;
 
     private String organizationType;
 
@@ -51,6 +53,7 @@ public class EditProfileActivity extends AppCompatActivity {
         saveDetails = (AppCompatButton)findViewById(R.id.saveDetails);
         mNGO = (RadioButton)findViewById(R.id.NGO_input);
         mSuper = (RadioButton)findViewById(R.id.supermarket_input);
+        radioGroup = (RadioGroup)findViewById(R.id.orgType);
 
         saveDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,19 +86,22 @@ public class EditProfileActivity extends AppCompatActivity {
         String callingActivity = intent.getStringExtra(CLASS_NAME);
         if(callingActivity == null)
         {
-            if(userInfo.getOrganizationType().equals("Non-governmental Organization"))
-            {
-                mNGO.setChecked(true);
-                this.organizationType = "Non-governmental Organization";
-
-            }
-            else
-            {
-                mSuper.setChecked(true);
-                this.organizationType = "Supermarket";
-            }
-            mNGO.setEnabled(false);
-            mSuper.setEnabled(false);
+//            if(userInfo.getOrganizationType().equals("Non-governmental Organization"))
+//            {
+//                mNGO.setChecked(true);
+//                this.organizationType = "Non-governmental Organization";
+//
+//            }
+//            else
+//            {
+//                mSuper.setChecked(true);
+//                this.organizationType = "Supermarket";
+//            }
+//            mNGO.setEnabled(false);
+//            mSuper.setEnabled(false);
+//            mNGO.setVisibility(View.GONE);
+//            mSuper.setVisibility(View.GONE);
+            radioGroup.setVisibility(View.GONE);
         }
 
     }
