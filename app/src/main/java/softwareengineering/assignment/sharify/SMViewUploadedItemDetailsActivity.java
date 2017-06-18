@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import static softwareengineering.assignment.sharify.NGOAvailableItemsFragment.CHARITY_ITEM_INFO;
+import static softwareengineering.assignment.sharify.ViewProfileFragment.CLASS_NAME;
 
 public class SMViewUploadedItemDetailsActivity extends AppCompatActivity {
 
@@ -90,6 +91,7 @@ public class SMViewUploadedItemDetailsActivity extends AppCompatActivity {
                 //start addpost activity with parcelable do not finish()
                 Intent intent = new Intent(SMViewUploadedItemDetailsActivity.this, SMAddPostActivity.class);
                 intent.putExtra(CHARITY_ITEM_INFO, charityItemInfo);
+                //intent.putExtra(CLASS_NAME, "SMViewUploadedItemDetailsActivity");
                 startActivity(intent);
             }
         });

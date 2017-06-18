@@ -230,11 +230,10 @@ public class SMAddPostActivity extends AppCompatActivity {
 //                startActivityForResult(Intent.createChooser(intent, "Select File"),GALLERY_INTENT);
                 if (android.os.Build.VERSION.SDK_INT >= 23) {
                     // only for gingerbread and newer versions
-                    if (!(checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
+                    if (!(checkSelfPermission(permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
                         ActivityCompat.requestPermissions(SMAddPostActivity.this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                     }
                 }
-
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK);
                 galleryIntent.setType("image/*");
                 startActivityForResult(galleryIntent, GALLERY_INTENT);
@@ -245,8 +244,7 @@ public class SMAddPostActivity extends AppCompatActivity {
         upLoadItemButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-
-
+                uploadItem();
             }
         });
 
@@ -306,17 +304,17 @@ public class SMAddPostActivity extends AppCompatActivity {
     private void uploadPicture()
     {
         if (uri!=null){
-            final ProgressDialog progDialog = new ProgressDialog(getApplicationContext(),
+            final ProgressDialog progDialog = new ProgressDialog(SMAddPostActivity.this,
                     R.style.AppTheme_Dark_Dialog);
 
             progDialog.setIndeterminate(true);
             progDialog.setMessage("Uploading....");
             progDialog.show();
 
+            StorageReference storageReference = mStorage.getReference();
+            storageReference = storageReference.child("Photos/" + uri.getLastPathSegment());
 
-            mStorRef = mStorRef.child("Photos/" + uri.getLastPathSegment());
-
-            UploadTask uploadTask = mStorRef.putFile(uri);
+            UploadTask uploadTask = storageReference.putFile(uri);
 
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -366,11 +364,14 @@ public class SMAddPostActivity extends AppCompatActivity {
             charityItemInfo.setItemQuantity(Integer.parseInt(qty));
             charityItemInfo.setItemCollectionDescription(coldesc);
             charityItemInfo.setContactDetails(userInfo.getOrganizationContact());
-            charityItemInfo.setItemUUID(UUID.randomUUID().toString());
+            if(charityItemInfo.getItemUUID() == null)
+            {
+                charityItemInfo.setItemUUID(UUID.randomUUID().toString());
+            }
             charityItemInfo.setItemDonatorName(userInfo.getOrganizationName());
             charityItemInfo.setItemDonatorUid(mAuth.getCurrentUser().getUid().toString());
 
-            final ProgressDialog progDialog = new ProgressDialog(getApplicationContext(),
+            final ProgressDialog progDialog = new ProgressDialog(SMAddPostActivity.this,
                     R.style.AppTheme_Dark_Dialog);
 
             progDialog.setIndeterminate(true);
@@ -423,6 +424,7 @@ public class SMAddPostActivity extends AppCompatActivity {
         {
             itmExpiryDate.setError("Please select an expiry date!");
             inputInvalid = true;
+
         }
         else
         {
@@ -432,6 +434,7 @@ public class SMAddPostActivity extends AppCompatActivity {
         {
             itmQuantity.setError("Please enter quantity!");
             inputInvalid = true;
+
         }
         else if(!isNumeric(qty))
         {
