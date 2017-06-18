@@ -452,6 +452,7 @@ public class SMAddPostActivity extends AppCompatActivity {
         {
 
             Picasso.with(SMAddPostActivity.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(imageView);
+            imageView.setVisibility(View.VISIBLE);
             itmName.setText(charityItemInfo.getItemName());
             itmDesc.setText(charityItemInfo.getItemDescription());
             itmManufactureDate.setText(charityItemInfo.getItemManufacturedDate());
