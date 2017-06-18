@@ -35,11 +35,6 @@ public class ResetPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final ProgressDialog progDialog = new ProgressDialog(ResetPasswordActivity.this,
-                        R.style.AppTheme_Dark_Dialog);
-                progDialog.setIndeterminate(true);
-                progDialog.setMessage("Sending email...");
-                progDialog.show();
                 reset_btn.setEnabled(false);
                 String email = inputEmail.getText().toString().trim();
 
@@ -47,8 +42,15 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 {
                     inputEmail.setError("Please enter a valid email address!");
                     Toast.makeText(getApplication(), "Enter your registered email!", Toast.LENGTH_SHORT).show();
+                    reset_btn.setEnabled(true);
                     return;
                 }
+
+                final ProgressDialog progDialog = new ProgressDialog(ResetPasswordActivity.this,
+                        R.style.AppTheme_Dark_Dialog);
+                progDialog.setIndeterminate(true);
+                progDialog.setMessage("Sending email...");
+                progDialog.show();
 
                 mAuth.sendPasswordResetEmail(email)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
