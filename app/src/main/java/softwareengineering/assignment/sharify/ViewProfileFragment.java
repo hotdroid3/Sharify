@@ -98,7 +98,6 @@ public class ViewProfileFragment extends Fragment {
             orgContact.setText(userInfo.getOrganizationContact());
 
         }
-
     }
 
     @Override

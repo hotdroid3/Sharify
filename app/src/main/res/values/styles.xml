@@ -26,7 +26,7 @@
         <item name="colorControlActivated">@color/red_primary</item>
         <item name="colorControlHighlight">@color/grey</item>
 
-        <item name="android:textColorHint">@color/iron</item>
+        <item name="android:textColorHint">@color/weldonBlue</item>
         <item name="android:textColor">@color/blueGray_mainText</item>
         <item name="android:editTextColor">@color/weldonBlue</item>
 
