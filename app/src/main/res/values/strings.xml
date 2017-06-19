@@ -2,7 +2,7 @@
     <string name="app_name">Perishable Charitables</string>
     <string name="sign_up">Don\'t have an account? Sign up here!</string>
     <string name="email_hint">Email</string>
-    <string name="password_hint">Password</string>
+    <string name="password_hint">Password (Min 6 characters)</string>
     <string name="re_enter_password_hint">Re-enter Password</string>
     <string name="login_button">Login</string>
     <string name="logout_button">Logout</string>

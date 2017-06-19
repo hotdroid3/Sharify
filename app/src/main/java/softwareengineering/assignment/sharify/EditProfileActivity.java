@@ -270,6 +270,13 @@ public class EditProfileActivity extends AppCompatActivity {
                     charityItemInfo.setItemCollectorName(userInfo.getOrganizationName());
                     charityItemInfoArrayList.set(index,charityItemInfo);
                 }
+                else if(charityItemInfo.getItemDonatorUid().equals(mAuth.getCurrentUser().getUid()))
+                {
+                    int index = charityItemInfoArrayList.indexOf(charityItemInfo);
+                    charityItemInfo.setItemDonatorName(userInfo.getOrganizationName());
+                    charityItemInfo.setContactDetails(userInfo.getOrganizationContact());
+                    charityItemInfoArrayList.set(index, charityItemInfo);
+                }
             }
             else if(charityItemInfo.getItemDonatorUid().equals(mAuth.getCurrentUser().getUid()))
             {
@@ -297,7 +304,7 @@ public class EditProfileActivity extends AppCompatActivity {
     {
          try
          {
-            Integer.parseInt(s);
+            Long.parseLong(s);
          }
          catch (NumberFormatException e)
          {

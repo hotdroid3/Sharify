@@ -102,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                isConnected = false;
                 if(!isConnected)
                 {
                     Runnable checkInternet = new Runnable() {
@@ -155,6 +156,8 @@ public class LoginActivity extends AppCompatActivity {
     public void login()
     {
         Log.d(TAG, "Login!");
+        isPasswordNull();
+        isEmailValid();
         if(isPasswordNull() || !isEmailValid() || !isConnected)
         {
             if(isPasswordNull() || !isEmailValid())
