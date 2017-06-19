@@ -98,28 +98,6 @@ public class EditProfileActivity extends AppCompatActivity {
         orgAddress.setText(userInfo.getOrganizationAddress());
         orgContact.setText(userInfo.getOrganizationContact());
         radioGroup.setVisibility(View.GONE);
-//        Intent intent = getIntent();
-//        String callingActivity = intent.getStringExtra(CLASS_NAME);
-//        if(userInfo.getOrganizationType().equals("Non-governmental Organization"))
-//        {
-//            mNGO.setChecked(true);
-//            this.organizationType = "Non-governmental Organization";
-//        }
-//        else
-//        {
-//            mSuper.setChecked(true);
-//            this.organizationType = "Supermarket";
-//        }
-
-//        if(callingActivity == null)
-//        {
-//
-//            mNGO.setEnabled(false);
-//            mSuper.setEnabled(false);
-//            mNGO.setVisibility(View.GONE);
-//            mSuper.setVisibility(View.GONE);
-
-//        }
 
     }
 
@@ -265,7 +243,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     updateItemsList(dataSnapshot);
                     progDialog.dismiss();
                 }
-
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
@@ -274,7 +251,6 @@ public class EditProfileActivity extends AppCompatActivity {
             charityItemRef.addListenerForSingleValueEvent(updateItemsListener);
             finish();
         }
-
     }
 
     private void updateItemsList(DataSnapshot dataSnapshot)
@@ -302,7 +278,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 charityItemInfo.setContactDetails(userInfo.getOrganizationContact());
                 charityItemInfoArrayList.set(index, charityItemInfo);
             }
-
         }
         for(CharityItemInfo charityItemInfo: charityItemInfoArrayList)
         {
@@ -310,10 +285,7 @@ public class EditProfileActivity extends AppCompatActivity {
             updateRef = updateRef.child(charityItemInfo.getItemUUID());
             updateRef.setValue(charityItemInfo);
         }
-
     }
-
-
 
     private void onFailedSave()
     {
