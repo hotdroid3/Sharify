@@ -304,8 +304,12 @@ public class EditProfileActivity extends AppCompatActivity {
             }
 
         }
-        DatabaseReference updateRef = mDatabase.getReference().child("Charity Items' Information");
-        updateRef.setValue(charityItemInfoArrayList);
+        for(CharityItemInfo charityItemInfo: charityItemInfoArrayList)
+        {
+            DatabaseReference updateRef = mDatabase.getReference().child("Charity Items' Information");
+            updateRef = updateRef.child(charityItemInfo.getItemUUID());
+            updateRef.setValue(charityItemInfo);
+        }
 
     }
 
