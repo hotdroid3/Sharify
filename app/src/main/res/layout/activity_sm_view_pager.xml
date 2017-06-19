@@ -42,6 +42,6 @@
         android:layout_marginTop="16dp"
         app:backgroundTint="@color/red_primary"
         app:elevation="10dp"
-        app:rippleColor="@color/red_primary"
+        app:rippleColor="@color/fabripplecolor"
         android:src="@drawable/add"/>
 </FrameLayout>
