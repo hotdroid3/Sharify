@@ -286,11 +286,14 @@ public class EditProfileActivity extends AppCompatActivity {
         }
         for(CharityItemInfo charityItemInfo: charityItemInfoArrayList)
         {
-            if(charityItemInfo.getItemCollectorUid().equals(mAuth.getCurrentUser().getUid()))
+            if(charityItemInfo.getItemCollectorUid() != null)
             {
-                int index = charityItemInfoArrayList.indexOf(charityItemInfo);
-                charityItemInfo.setItemCollectorName(userInfo.getOrganizationName());
-                charityItemInfoArrayList.set(index,charityItemInfo);
+                if(charityItemInfo.getItemCollectorUid().equals(mAuth.getCurrentUser().getUid()))
+                {
+                    int index = charityItemInfoArrayList.indexOf(charityItemInfo);
+                    charityItemInfo.setItemCollectorName(userInfo.getOrganizationName());
+                    charityItemInfoArrayList.set(index,charityItemInfo);
+                }
             }
             else if(charityItemInfo.getItemDonatorUid().equals(mAuth.getCurrentUser().getUid()))
             {
