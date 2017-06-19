@@ -102,6 +102,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                if(!isConnected)
+                {
+                    Runnable checkInternet = new Runnable() {
+                        @Override
+                        public void run() {
+                            onCheckInternetConnection(LoginActivity.this);
+                        }
+                    };
+                    new Thread(checkInternet).start();
+                }
                 login();
             }
         });
