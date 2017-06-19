@@ -13,8 +13,14 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import static softwareengineering.assignment.sharify.ViewProfileFragment.CLASS_NAME;
 import static softwareengineering.assignment.sharify.ViewProfileFragment.USERINFO;
@@ -30,11 +36,12 @@ public class EditProfileActivity extends AppCompatActivity {
     private AppCompatButton saveDetails = null;
     private FirebaseDatabase mDatabase = null;
     private DatabaseReference mDataRef = null;
+    private DatabaseReference charityItemRef = null;
     private FirebaseAuth mAuth = null;
     private RadioButton mNGO;
     private RadioButton mSuper;
     private RadioGroup radioGroup;
-
+    private ArrayList<CharityItemInfo> charityItemInfoArrayList = new ArrayList<CharityItemInfo>();
     private String organizationType;
 
     @Override
@@ -72,7 +79,15 @@ public class EditProfileActivity extends AppCompatActivity {
         UserInfo userInfo = i.getParcelableExtra(USERINFO);
         if(userInfo != null)
         {
+            //testing
+            this.userInfo = userInfo;
+            this.organizationType = userInfo.getOrganizationType();
             updateView(userInfo);
+        }
+        String callingActivity = i.getStringExtra(CLASS_NAME);
+        if(callingActivity != null)
+        {
+            this.organizationType = null;
         }
 
     }
@@ -82,29 +97,29 @@ public class EditProfileActivity extends AppCompatActivity {
         orgName.setText(userInfo.getOrganizationName());
         orgAddress.setText(userInfo.getOrganizationAddress());
         orgContact.setText(userInfo.getOrganizationContact());
-        Intent intent = getIntent();
-        String callingActivity = intent.getStringExtra(CLASS_NAME);
-        if(userInfo.getOrganizationType().equals("Non-governmental Organization"))
-        {
-            mNGO.setChecked(true);
-            this.organizationType = "Non-governmental Organization";
+        radioGroup.setVisibility(View.GONE);
+//        Intent intent = getIntent();
+//        String callingActivity = intent.getStringExtra(CLASS_NAME);
+//        if(userInfo.getOrganizationType().equals("Non-governmental Organization"))
+//        {
+//            mNGO.setChecked(true);
+//            this.organizationType = "Non-governmental Organization";
+//        }
+//        else
+//        {
+//            mSuper.setChecked(true);
+//            this.organizationType = "Supermarket";
+//        }
 
-        }
-        else
-        {
-            mSuper.setChecked(true);
-            this.organizationType = "Supermarket";
-        }
-
-        if(callingActivity == null)
-        {
+//        if(callingActivity == null)
+//        {
 //
 //            mNGO.setEnabled(false);
 //            mSuper.setEnabled(false);
 //            mNGO.setVisibility(View.GONE);
 //            mSuper.setVisibility(View.GONE);
-            radioGroup.setVisibility(View.GONE);
-        }
+
+//        }
 
     }
 
@@ -161,7 +176,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 }
             };
-
             new Thread(saveDetails).start();
             onSuccessfulSave();
         }
@@ -218,6 +232,7 @@ public class EditProfileActivity extends AppCompatActivity {
         //check user account type before starting activity
         Intent receivedIntent = getIntent();
         String callingActivity = receivedIntent.getStringExtra(CLASS_NAME);
+
         if(callingActivity != null)
         {
             if(callingActivity.equals("LoginActivity") || callingActivity.equals("SignUpActivity"))
@@ -237,10 +252,61 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         }
         else {
+            final ProgressDialog progDialog = new ProgressDialog(EditProfileActivity.this,
+                    R.style.AppTheme_Dark_Dialog);
+            progDialog.setIndeterminate(true);
+            progDialog.setMessage("Updating charity items...");
+            progDialog.show();
+
+            charityItemRef = mDatabase.getReference().child("Charity Items' Information");
+            final ValueEventListener updateItemsListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    updateItemsList(dataSnapshot);
+                    progDialog.dismiss();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+            charityItemRef.addListenerForSingleValueEvent(updateItemsListener);
             finish();
         }
 
     }
+
+    private void updateItemsList(DataSnapshot dataSnapshot)
+    {
+        charityItemInfoArrayList.clear();
+        for(DataSnapshot child: dataSnapshot.getChildren())
+        {
+            charityItemInfoArrayList.add(child.getValue(CharityItemInfo.class));
+        }
+        for(CharityItemInfo charityItemInfo: charityItemInfoArrayList)
+        {
+            if(charityItemInfo.getItemCollectorUid().equals(mAuth.getCurrentUser().getUid()))
+            {
+                int index = charityItemInfoArrayList.indexOf(charityItemInfo);
+                charityItemInfo.setItemCollectorName(userInfo.getOrganizationName());
+                charityItemInfoArrayList.set(index,charityItemInfo);
+            }
+            else if(charityItemInfo.getItemDonatorUid().equals(mAuth.getCurrentUser().getUid()))
+            {
+                int index = charityItemInfoArrayList.indexOf(charityItemInfo);
+                charityItemInfo.setItemDonatorName(userInfo.getOrganizationName());
+                charityItemInfo.setContactDetails(userInfo.getOrganizationContact());
+                charityItemInfoArrayList.set(index, charityItemInfo);
+            }
+
+        }
+        DatabaseReference updateRef = mDatabase.getReference().child("Charity Items' Information");
+        updateRef.setValue(charityItemInfoArrayList);
+
+    }
+
+
 
     private void onFailedSave()
     {

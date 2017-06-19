@@ -119,7 +119,7 @@ public class SMViewAcceptedItemDetailsActivity extends AppCompatActivity {
         {
             Picasso.with(SMViewAcceptedItemDetailsActivity.this).load(charityItemInfo.getImgUri()).fit().centerCrop().into(itemImage);
             itemName.setText(charityItemInfo.getItemName());
-            itemCollector.setText(charityItemInfo.getItemDonatorName());
+            itemCollector.setText(charityItemInfo.getItemCollectorName());
             itemDescription.setText(charityItemInfo.getItemDescription());
             itemManufacturedDate.setText(charityItemInfo.getItemManufacturedDate());
             itemExpiryDate.setText(charityItemInfo.getItemExpiryDate());

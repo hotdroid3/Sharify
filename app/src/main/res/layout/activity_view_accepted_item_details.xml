@@ -41,7 +41,7 @@ tools:context="softwareengineering.assignment.sharify.NGOViewAcceptedItemDetails
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Item_Accepted_From"
+            android:text="@string/Item_Donated_By"
             android:textSize="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="3dp"
