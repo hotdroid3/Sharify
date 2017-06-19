@@ -105,13 +105,14 @@ public class LoginActivity extends AppCompatActivity {
                 isConnected = false;
                 if(!isConnected)
                 {
-                    Runnable checkInternet = new Runnable() {
-                        @Override
-                        public void run() {
-                            onCheckInternetConnection(LoginActivity.this);
-                        }
-                    };
-                    new Thread(checkInternet).start();
+                    onCheckInternetConnection(LoginActivity.this);
+//                    Runnable checkInternet = new Runnable() {
+//                        @Override
+//                        public void run() {
+//
+//                        }
+//                    };
+//                    new Thread(checkInternet).start();
                 }
                 login();
             }
@@ -274,23 +275,23 @@ public class LoginActivity extends AppCompatActivity {
         {
             isConnected = true;
         }
-        if(isConnected)
-        {
-            try{
-                HttpURLConnection urlConnection = (HttpURLConnection)(new URL("http://clients3.google.com/generate_204").openConnection());
-                urlConnection.setRequestProperty("User-Agent", "Android");
-                urlConnection.setRequestProperty("Connection", "close");
-                urlConnection.setConnectTimeout(1500);
-                urlConnection.connect();
-                if(urlConnection.getResponseCode() == 204 && urlConnection.getContentLength() == 0)
-                {
-                    isConnected = true;
-                }
-            }catch (IOException e)
-            {
-                isConnected = false;
-            }
-        }
+//        if(isConnected)
+//        {
+//            try{
+//                HttpURLConnection urlConnection = (HttpURLConnection)(new URL("http://clients3.google.com/generate_204").openConnection());
+//                urlConnection.setRequestProperty("User-Agent", "Android");
+//                urlConnection.setRequestProperty("Connection", "close");
+//                urlConnection.setConnectTimeout(1500);
+//                urlConnection.connect();
+//                if(urlConnection.getResponseCode() == 204 && urlConnection.getContentLength() == 0)
+//                {
+//                    isConnected = true;
+//                }
+//            }catch (IOException e)
+//            {
+//                isConnected = false;
+//            }
+//        }
     }
 
     public void startNewActivity()
