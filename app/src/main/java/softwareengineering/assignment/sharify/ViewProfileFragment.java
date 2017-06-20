@@ -136,7 +136,7 @@ public class ViewProfileFragment extends Fragment {
                 //mAuth.signOut();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
-                getActivity().finish();
+                getActivity().finishAffinity();
             }
         });
 
